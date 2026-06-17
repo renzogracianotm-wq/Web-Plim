@@ -1,0 +1,7 @@
+{
+  "name": "Plim",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

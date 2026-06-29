@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cata-ver"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del Producto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding detalle-page">
+
+  <!-- DETALLE PRINCIPAL -->
+  <div class="detalle-container" *ngIf="producto">
+
+    <!-- IMAGEN -->
+    <div class="detalle-imagen">
+      <img [src]="producto.imagenUrl" />
+    </div>
+
+    <!-- INFO -->
+    <div class="detalle-info">
+
+      <h2>{{ producto.nombre }}</h2>
+
+      <h3>S/{{ producto.precio }}</h3>
+
+      <p><strong>Stock:</strong> {{ producto.stock }}</p>
+      <p><strong>Categoría:</strong> {{ producto.categoriaId }}</p>
+      <p class="descripcion">{{ producto.descripcion }}</p>
+
+      <div class="btn-group">
+        <ion-button expand="block" color="primary" (click)="agregar()">
+          Añadir al carrito
+        </ion-button>
+
+        <ion-button expand="block" color="danger" (click)="eliminar()">
+          Eliminar
+        </ion-button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RELACIONADOS -->
+  <h2 class="titulo-relacionados">Productos relacionados</h2>
+
+  <div class="relacionados">
+
+    <ion-card
+      *ngFor="let p of productosRelacionados"
+      (click)="verRelacionado(p)"
+      button>
+
+      <img [src]="p.imagenUrl" />
+
+      <ion-card-header>
+        <ion-card-title>{{ p.nombre }}</ion-card-title>
+        <ion-card-subtitle>S/{{ p.precio }}</ion-card-subtitle>
+      </ion-card-header>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

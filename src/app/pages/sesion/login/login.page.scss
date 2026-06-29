@@ -1,0 +1,140 @@
+
+/* =========================
+   🌍 FONDO GENERAL
+========================= */
+ion-content {
+  --background: var(--background);
+}
+
+/* =========================
+   📦 CONTENEDOR GENERAL
+========================= */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  width: 100%;
+}
+
+/* =========================
+   🧱 CAJA LOGIN
+========================= */
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
+  border-radius: 16px;
+
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  text-align: center;
+}
+
+/* =========================
+   🖼️ IMAGEN
+========================= */
+.login-image img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+/* =========================
+   🏷️ TÍTULO
+========================= */
+.title {
+  color: var(--primary);
+  font-size: 26px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* =========================
+   🧾 INPUTS
+========================= */
+.input-item {
+  margin-bottom: 15px;
+  --background: transparent;
+  color: var(--text);
+}
+
+/* =========================
+   🔘 BOTÓN LOGIN
+========================= */
+.login-btn {
+  --background: var(--primary);
+  --border-radius: 10px;
+  margin-top: 10px;
+}
+
+/* =========================
+   🔗 REGISTRO
+========================= */
+.register {
+  margin-top: 15px;
+  color: var(--text-secondary);
+
+  a {
+    color: var(--primary);
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
+.guest {
+  text-align: center;
+  margin: 8px 0;
+}
+
+.guest b {
+  cursor: pointer;
+  color: #007bff;
+}
+
+.guest b:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   🎨 BOTONES DE TEMA
+========================= */
+.themes {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* =========================
+   📱 MOBILE
+========================= */
+@media (max-width: 768px) {
+  .login-box {
+    width: 90%;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+}
+
+/* =========================
+   💻 PC (FULL SCREEN STYLE)
+========================= */
+@media (min-width: 1024px) {
+  .login-container {
+    background: linear-gradient(
+      120deg,
+      var(--primary),
+      var(--background)
+    );
+  }
+
+  .login-box {
+    transform: scale(1.05);
+  }
+}

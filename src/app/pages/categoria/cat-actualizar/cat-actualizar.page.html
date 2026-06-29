@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Actualizar Categoría</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-card-content>
+
+      <form [formGroup]="categoriaForm" (ngSubmit)="actualizar()">
+        
+        <ion-item>
+          <ion-label position="floating">ID Categoría</ion-label>
+          <ion-input formControlName="categoriaId"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input formControlName="nombre"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-input formControlName="descripcion"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Link Imagen</ion-label>
+          <ion-input formControlName="imagenUrl"></ion-input>
+        </ion-item>
+
+        <!-- PREVIEW -->
+        <img
+          *ngIf="categoriaForm.value.imagenUrl"
+          [src]="categoriaForm.value.imagenUrl"
+          class="preview-img"
+        />
+
+        <ion-item lines="none">
+          <ion-label>Activo</ion-label>
+          <ion-toggle formControlName="activo"></ion-toggle>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" [disabled]="categoriaForm.invalid">
+          Actualizar
+        </ion-button>
+
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

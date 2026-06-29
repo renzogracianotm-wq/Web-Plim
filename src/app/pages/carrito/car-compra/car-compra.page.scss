@@ -1,0 +1,189 @@
+/* =========================
+   CONTENIDO GENERAL
+========================= */
+
+ion-content {
+  --background: var(--background);
+  color: var(--text);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   CARD PRODUCTO
+========================= */
+
+ion-card {
+  background: var(--surface);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+ion-card:hover {
+  transform: translateY(-2px);
+}
+
+/* IMAGEN */
+.producto-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* TITULOS */
+ion-card-title {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+ion-card-subtitle {
+  color: var(--text-secondary);
+}
+
+/* TEXTO */
+ion-card-content p {
+  color: var(--text-secondary);
+  margin: 4px 0;
+}
+
+/* =========================
+   CANTIDAD
+========================= */
+
+.cantidad-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.cantidad {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+/* BOTONES +/- */
+.cantidad-group ion-button {
+  --border-radius: 10px;
+}
+
+/* =========================
+   TOTAL
+========================= */
+
+.total {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.total h2 {
+  color: var(--text);
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+/* =========================
+   BOTÓN COMPRAR
+========================= */
+
+ion-button[expand="block"] {
+  --border-radius: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+  ion-card {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .producto-img {
+    height: 220px;
+  }
+
+  .total h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* =========================
+   PC
+========================= */
+
+@media (min-width: 1200px) {
+
+  ion-content {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  ion-card {
+    max-width: 800px;
+  }
+
+  .producto-img {
+    height: 260px;
+  }
+
+  .total h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* =========================
+   🌸 TEMA ROSA
+========================= */
+
+.theme-pink ion-card {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+
+.theme-blue ion-card {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+
+.theme-dark ion-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.theme-dark .producto-img {
+  border: 1px solid rgba(255,255,255,0.08);
+}

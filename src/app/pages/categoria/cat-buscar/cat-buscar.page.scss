@@ -1,0 +1,219 @@
+/* =========================
+   HEADER
+========================= */
+
+ion-header {
+  box-shadow: none;
+}
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.cat-page {
+  --background: var(--background);
+  color: var(--text);
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+.search-item {
+  --background: var(--surface);
+  margin-bottom: 18px;
+  border-radius: 14px;
+
+  ion-icon {
+    color: var(--primary);
+  }
+
+  ion-input {
+    --color: var(--text);
+  }
+}
+
+/* =========================
+   GRID DE CATEGORÍAS
+========================= */
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+/* =========================
+   TARJETAS
+========================= */
+
+ion-card {
+  --background: var(--surface);
+}
+
+.cat-card {
+  margin: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  transition: 0.25s;
+}
+
+.cat-card:hover {
+  transform: translateY(-3px);
+}
+
+/* =========================
+   CONTENIDO CARD
+========================= */
+
+.cat-card ion-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* =========================
+   DATOS
+========================= */
+
+.cat-data {
+  color: var(--text);
+
+  p {
+    margin: 4px 0;
+    font-size: 0.85rem;
+    word-break: break-word;
+  }
+
+  strong {
+    color: var(--primary);
+  }
+}
+
+/* =========================
+   IMAGEN
+========================= */
+
+.preview-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-group ion-button {
+  flex: 1;
+  min-width: 90px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .preview-img {
+    height: 180px;
+  }
+}
+
+/* =========================
+   PC
+========================= */
+
+@media (min-width: 1200px) {
+
+  .cat-page {
+    max-width: 1400px;
+    margin: auto;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .preview-img {
+    height: 220px;
+  }
+}
+
+/* =========================
+   TEMA ROSA
+========================= */
+
+.theme-pink {
+
+  .search-item {
+    border: 1px solid rgba(255, 79, 163, 0.15);
+  }
+
+  .cat-card {
+    border: 1px solid rgba(255, 79, 163, 0.12);
+  }
+}
+
+/* =========================
+   TEMA AZUL
+========================= */
+
+.theme-blue {
+
+  .search-item {
+    border: 1px solid rgba(79, 125, 255, 0.15);
+  }
+
+  .cat-card {
+    border: 1px solid rgba(79, 125, 255, 0.12);
+  }
+}
+
+/* =========================
+   TEMA OSCURO
+========================= */
+
+.theme-dark {
+
+  .search-item {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .cat-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .preview-img {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}

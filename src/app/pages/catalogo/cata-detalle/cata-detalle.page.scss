@@ -1,0 +1,166 @@
+/* =====================
+   HEADER / TOOLBAR
+===================== */
+
+ion-header,
+ion-toolbar {
+  --background: var(--primary);
+}
+
+ion-title {
+  color: #ffffff !important;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+ion-buttons,
+ion-back-button {
+  color: #ffffff !important;
+}
+
+/* =====================
+   FONDO GENERAL
+===================== */
+
+ion-content.detalle-page {
+  --background: var(--background);
+}
+
+/* =====================
+   DETALLE PRINCIPAL (PC)
+===================== */
+
+.detalle-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  justify-content: center;
+  max-width: 1100px;
+  margin: 20px auto;
+}
+
+/* =====================
+   IMAGEN
+===================== */
+
+.detalle-imagen {
+  flex: 1;
+}
+
+.detalle-imagen img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #f2f2f2;
+}
+
+/* =====================
+   INFO
+===================== */
+
+.detalle-info {
+  flex: 1;
+}
+
+.detalle-info h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.detalle-info h3 {
+  font-size: 22px;
+  color: #e91e63;
+  margin-bottom: 15px;
+}
+
+.detalle-info p {
+  font-size: 14px;
+  margin: 6px 0;
+  color: var(--text);
+}
+
+.descripcion {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+/* =====================
+   BOTONES
+===================== */
+
+.btn-group {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+ion-button {
+  --border-radius: 14px;
+  font-weight: 600;
+}
+
+/* =====================
+   RELACIONADOS
+===================== */
+
+.titulo-relacionados {
+  margin: 30px 20px 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.relacionados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 20px;
+}
+
+.relacionados ion-card {
+  cursor: pointer;
+  transition: 0.2s ease;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.relacionados ion-card:hover {
+  transform: scale(1.03);
+}
+
+.relacionados img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+/* =====================
+   RESPONSIVE MOBILE
+===================== */
+
+@media (max-width: 768px) {
+  .detalle-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .detalle-imagen img {
+    max-width: 100%;
+  }
+
+  .btn-group {
+    flex-direction: column;
+  }
+}
+
+/* =====================
+   DARK MODE
+===================== */
+
+.theme-dark ion-card {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}

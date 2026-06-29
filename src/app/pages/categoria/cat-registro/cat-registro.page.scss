@@ -1,0 +1,263 @@
+/* =========================
+   PÁGINA GENERAL
+========================= */
+
+.cat-page {
+  --background: var(--background);
+  color: var(--text);
+  padding: 16px;
+  max-width: 100%;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-header {
+  box-shadow: none;
+}
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   CARD PRINCIPAL
+========================= */
+
+ion-card {
+  --background: var(--surface);
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* HEADER CARD */
+
+ion-card-header {
+  text-align: center;
+  padding-bottom: 0;
+}
+
+ion-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+}
+
+ion-item {
+  --background: var(--surface);
+  border-radius: 12px;
+}
+
+/* LABELS */
+
+ion-label {
+  color: var(--text-secondary) !important;
+}
+
+/* INPUTS */
+
+ion-input,
+ion-select,
+ion-textarea {
+  --color: var(--text);
+  color: var(--text);
+}
+
+/* TEXTO INTERNO INPUTS */
+
+ion-input::part(native),
+ion-textarea::part(native) {
+  color: var(--text);
+}
+
+/* PLACEHOLDER */
+
+ion-input {
+  --placeholder-color: var(--text-secondary);
+  --placeholder-opacity: 0.7;
+}
+
+/* INPUT FILE */
+
+input[type="file"] {
+  width: 100%;
+  color: var(--text);
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+ion-button {
+  margin-top: 10px;
+  --background: var(--primary);
+  --border-radius: 12px;
+  font-weight: 600;
+}
+
+ion-button::part(native) {
+  color: #fff;
+}
+
+.upload-btn {
+  margin-top: 16px;
+}
+
+.save-btn {
+  margin-top: 20px;
+}
+
+/* =========================
+   URL GENERADA
+========================= */
+
+.url-preview {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+ion-item ion-input[readonly] {
+  --color: var(--text);
+  font-size: 0.85rem;
+}
+
+/* =========================
+   PREVIEW IMAGEN
+========================= */
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.preview-img {
+  width: 100%;
+  max-width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   TEXTO GENERAL
+========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+}
+
+/* =========================
+   RESPONSIVE TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+  .cat-page {
+    max-width: 700px;
+    margin: auto;
+  }
+
+  ion-card {
+    padding: 10px;
+  }
+
+  form {
+    gap: 14px;
+  }
+
+  .preview-img {
+    max-width: 300px;
+    height: 300px;
+  }
+}
+
+/* =========================
+   RESPONSIVE PC
+========================= */
+
+@media (min-width: 1200px) {
+
+  .cat-page {
+    max-width: 900px;
+    margin: auto;
+  }
+
+  ion-card {
+    padding: 20px;
+  }
+
+  ion-card-title {
+    font-size: 1.4rem;
+  }
+
+  .preview-img {
+    max-width: 350px;
+    height: 350px;
+  }
+}
+
+/* =========================
+   🌸 TEMA ROSA
+========================= */
+
+.theme-pink ion-card {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+
+.theme-blue ion-card {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+
+.theme-dark ion-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.theme-dark .preview-img {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.theme-dark input[type="file"] {
+  color: var(--text);
+}

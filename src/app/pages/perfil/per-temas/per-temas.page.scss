@@ -1,0 +1,86 @@
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 16px;
+  background: var(--ion-background-color);
+}
+
+/* 📦 CARD PRINCIPAL */
+.theme-card {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background: var(--ion-card-background);
+}
+
+/* 🧠 TITULO */
+.theme-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--ion-text-color);
+}
+
+/* 🎨 GRID DE OPCIONES */
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+/* 📱 tablet */
+@media (min-width: 600px) {
+  .theme-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 💻 desktop */
+@media (min-width: 900px) {
+  .theme-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* 🔘 BOTONES MODERNOS */
+.theme-btn {
+  --border-radius: 14px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* ✨ efecto hover (pc) */
+.theme-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* 📲 efecto tap */
+.theme-btn:active {
+  transform: scale(0.98);
+}
+
+/* 🌈 colores visuales por tipo */
+.btn-pink {
+  --background: #ff4fa3;
+  --color: white;
+}
+
+.btn-blue {
+  --background: #4f7dff;
+  --color: white;
+}
+
+.btn-dark {
+  --background: #222;
+  --color: white;
+}

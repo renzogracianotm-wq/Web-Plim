@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Buscar Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- BUSCADOR -->
+  <ion-item>
+    <ion-label position="floating">Buscar por nombre o categoría</ion-label>
+    <ion-input [(ngModel)]="busqueda" (ionInput)="buscar()"></ion-input>
+  </ion-item>
+
+  <!-- GRID DE PRODUCTOS -->
+  <div class="prod-grid">
+
+    <div class="prod-card" *ngFor="let p of productosFiltrados">
+
+      <!-- IMAGEN -->
+      <img
+        *ngIf="p.imagenUrl"
+        [src]="p.imagenUrl"
+        class="preview-img"
+      />
+
+      <!-- INFO -->
+      <h2>{{ p.nombre }}</h2>
+      <p>Cat: {{ p.categoriaId }}</p>
+      <p>S/ {{ p.precio }}</p>
+      <p>Stock: {{ p.stock }}</p>
+
+      <!-- BOTONES -->
+      <div class="btn-group">
+        <ion-button
+          size="small"
+          fill="outline"
+          color="primary"
+          (click)="editar(p)">
+          Editar
+        </ion-button>
+
+        <ion-button
+          size="small"
+          fill="outline"
+          color="danger"
+          (click)="eliminar(p.docId)">
+          Eliminar
+        </ion-button>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

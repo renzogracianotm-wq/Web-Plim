@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mis Compras</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="titulo">
+    <h2>Historial de Compras</h2>
+  </div>
+
+  <!-- SI NO HAY COMPRAS -->
+  <div *ngIf="compras.length === 0" class="vacio">
+    <ion-icon name="cart-outline"></ion-icon>
+    <p>No tienes compras registradas.</p>
+  </div>
+
+  <!-- LISTA -->
+  <ion-card *ngFor="let compra of compras" class="compra-card">
+
+    <div class="compra-container">
+
+      <!-- IMAGEN -->
+      <div class="compra-img">
+        <img [src]="compra.imagenUrl" />
+      </div>
+
+      <!-- INFO -->
+      <div class="compra-info">
+
+        <h3>{{ compra.nombre }}</h3>
+
+        <p class="precio">S/ {{ compra.precio }}</p>
+
+        <p>
+          <strong>Cantidad:</strong> {{ compra.cantidad }}
+        </p>
+
+        <p class="subtotal">
+          Subtotal: S/ {{ compra.precio * compra.cantidad }}
+        </p>
+
+      </div>
+
+    </div>
+
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-content class="login-content" fullscreen="true">
+
+  <div class="login-container">
+
+    <div class="login-box">
+
+      <!-- IMAGEN -->
+      <div class="login-image">
+        <img src="assets/icon/Logo.jpg" alt="login" />
+      </div>
+
+      <h1 class="title">Iniciar Sesión</h1>
+
+      <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input type="email" formControlName="correo"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" class="login-btn">
+          Iniciar Sesión
+        </ion-button>
+
+      </form>
+
+      <p class="register">
+        ¿No tienes cuenta?
+        <a (click)="irARegistro()">Regístrate</a>
+      </p>
+
+      <p class="guest">
+        <b (click)="irACatalogo()">Sesión como Invitado</b>
+      </p>
+
+      <!-- 🎨 BOTONES DE TEMA (prueba) -->
+      <div class="themes">
+        <ion-button size="small" (click)="setTheme('theme-pink')">🌸</ion-button>
+        <ion-button size="small" (click)="setTheme('theme-blue')">🔵</ion-button>
+        <ion-button size="small" (click)="setTheme('theme-dark')">🌙</ion-button>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,70 @@
+<ion-content class="register-content">
+
+  <div class="register-container">
+
+    <ion-card class="register-card">
+
+      <!-- LOGO -->
+      <div class="register-image">
+        <img src="assets/icon/Logo.jpg" alt="Logo">
+      </div>
+
+      <h1>Crear Cuenta</h1>
+
+      <form [formGroup]="registerForm" (ngSubmit)="registrarUsuario()">
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input
+            formControlName="nombre">
+          </ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input
+            type="email"
+            formControlName="correo">
+          </ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input
+            type="password"
+            formControlName="password">
+          </ion-input>
+        </ion-item>
+
+        <ion-item fill="outline">
+          <ion-label position="floating">Confirmar Contraseña</ion-label>
+          <ion-input
+            type="password"
+            formControlName="confirmarPassword">
+          </ion-input>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          type="submit"
+          [disabled]="loading">
+
+          {{ loading ? 'Registrando...' : 'Registrarse' }}
+
+        </ion-button>
+
+      </form>
+
+      <div class="login-link">
+        <span>¿Ya tienes cuenta?</span>
+
+        <a (click)="irALogin()">
+          Iniciar sesión
+        </a>
+      </div>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

@@ -1,2 +1,21 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+:root {
+  /* 🌟 COLORES PRINCIPALES */
+  --primary: #ff4fa3;
+  --primary-rgb: 255, 79, 163;
+
+  /* 🖼️ FONDO */
+  --background: #ffffff;
+  --surface: #22416e;
+
+  /* ✍️ TEXTO */
+  --text: #222;
+  --text-secondary: #666;
+
+  /* ⚡ ESTADOS */
+  --success: #2ecc71;
+  --warning: #f1c40f;
+  --danger: #e74c3c;
+
+  /* 🔘 BOTONES */
+  --button-radius: 12px;
+}

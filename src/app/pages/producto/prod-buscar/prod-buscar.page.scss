@@ -1,0 +1,169 @@
+/* =========================
+   PÁGINA GENERAL
+========================= */
+
+ion-content {
+  --background: var(--background);
+  color: var(--text);
+  padding: 12px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   BUSCADOR
+========================= */
+
+ion-item {
+  --background: var(--surface);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+ion-label {
+  color: var(--text-secondary);
+}
+
+ion-input {
+  --color: var(--text);
+}
+
+/* =========================
+   GRID PRODUCTOS
+========================= */
+
+.prod-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* =========================
+   CARD PRODUCTO
+========================= */
+
+.prod-card {
+  background: var(--surface);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.prod-card:hover {
+  transform: translateY(-3px);
+}
+
+/* IMAGEN */
+.preview-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* TEXTO */
+.prod-card h2 {
+  font-size: 0.95rem;
+  margin: 6px 0 2px;
+  color: var(--text);
+}
+
+.prod-card p {
+  margin: 2px 0;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+/* BOTONES */
+.btn-group {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.btn-group ion-button {
+  font-size: 0.7rem;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+  .prod-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .preview-img {
+    height: 170px;
+  }
+}
+
+/* =========================
+   PC
+========================= */
+
+@media (min-width: 1200px) {
+
+  .prod-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .preview-img {
+    height: 160px;
+  }
+
+  .prod-card {
+    padding: 10px;
+  }
+}
+
+/* =========================
+   🌸 TEMA ROSA
+========================= */
+
+.theme-pink .prod-card {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+
+.theme-blue .prod-card {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+
+.theme-dark .prod-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.theme-dark ion-item {
+  --background: var(--surface);
+}

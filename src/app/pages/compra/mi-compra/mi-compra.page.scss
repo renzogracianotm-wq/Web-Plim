@@ -1,0 +1,115 @@
+/* ================= GENERAL ================= */
+
+ion-content {
+  --background: var(--background);
+}
+
+/* ================= HEADER ================= */
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title,
+ion-menu-button {
+  color: #fff;
+}
+
+/* ================= TITULO ================= */
+
+.titulo {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.titulo h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text);
+}
+
+/* ================= CARD COMPRA ================= */
+
+.compra-card {
+  margin: 12px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+.compra-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ================= LAYOUT ================= */
+
+.compra-container {
+  display: flex;
+  gap: 15px;
+  padding: 12px;
+}
+
+/* IMAGEN */
+.compra-img img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* INFO */
+.compra-info {
+  flex: 1;
+}
+
+.compra-info h3 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.precio {
+  color: #e91e63;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.subtotal {
+  margin-top: 6px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* ================= VACÍO ================= */
+
+.vacio {
+  text-align: center;
+  margin-top: 60px;
+  color: var(--text-secondary);
+}
+
+.vacio ion-icon {
+  font-size: 60px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (min-width: 768px) {
+
+  .compra-card {
+    max-width: 700px;
+    margin: 15px auto;
+  }
+
+  .compra-img img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .compra-info h3 {
+    font-size: 18px;
+  }
+}

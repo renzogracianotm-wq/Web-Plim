@@ -1,0 +1,64 @@
+
+/*  TEMA ROSA */
+.theme-pink {
+  /*  IONIC CORE */
+  --ion-color-primary: #ff4fa3;
+  --ion-background-color: #fff0f6;
+  --ion-text-color: #222;
+  --ion-text-color-rgb: 34, 34, 34;
+
+  /*  UI PERSONAL */
+  --primary: #ff4fa3;
+  --background: #fff0f6;
+  --surface: #ffffff;
+
+  --text: #222;
+  --text-secondary: #666;
+
+  /*  COMPONENTES */
+  --ion-card-background: #ffffff;
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+.theme-blue {
+  /* 🔵 IONIC CORE */
+  --ion-color-primary: #4f7dff;
+  --ion-background-color: #eef3ff;
+  --ion-text-color: #1a1a1a;
+  --ion-text-color-rgb: 26, 26, 26;
+
+  /* 🧱 UI PERSONAL */
+  --primary: #4f7dff;
+  --background: #eef3ff;
+  --surface: #ffffff;
+
+  --text: #1a1a1a;
+  --text-secondary: #4d4d4d;
+
+  /* 🎨 COMPONENTES */
+  --ion-card-background: #ffffff;
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+.theme-dark {
+  /* 🔵 IONIC CORE */
+  --ion-color-primary: #bb86fc;
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+  --ion-text-color-rgb: 255, 255, 255;
+
+  /* 🧱 UI PERSONAL */
+  --primary: #bb86fc;
+  --background: #121212;
+  --surface: #1e1e1e;
+
+  --text: #ffffff;
+  --text-secondary: #b3b3b3;
+
+  /* 🎨 COMPONENTES */
+  --ion-card-background: #1e1e1e;
+}

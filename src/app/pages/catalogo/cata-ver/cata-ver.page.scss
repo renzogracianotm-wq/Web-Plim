@@ -1,0 +1,160 @@
+/* =========================
+   PÁGINA GENERAL
+========================= */
+
+ion-content {
+  --background: var(--background);
+  color: var(--text);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+ion-item {
+  --background: var(--surface);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+}
+
+ion-label {
+  color: var(--text-secondary);
+}
+
+ion-input,
+ion-select {
+  --color: var(--text);
+}
+
+/* =========================
+   GRID DE PRODUCTOS
+========================= */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 15px;
+}
+
+/* ITEM PRODUCTO */
+.grid-item {
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.grid-item:hover {
+  transform: translateY(-3px);
+}
+
+/* IMAGEN */
+.producto-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+/* TEXTO */
+.grid-item h3 {
+  font-size: 1rem;
+  margin: 6px 0;
+  color: var(--text);
+}
+
+.grid-item p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+  .grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .producto-img {
+    height: 180px;
+  }
+}
+
+/* =========================
+   PC
+========================= */
+
+@media (min-width: 1200px) {
+
+  .grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .producto-img {
+    height: 220px;
+  }
+
+  .grid-item {
+    padding: 14px;
+  }
+}
+
+/* =========================
+   🌸 TEMA ROSA
+========================= */
+
+.theme-pink .grid-item {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+
+.theme-blue .grid-item {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+
+.theme-dark .grid-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+.theme-dark ion-item {
+  --background: var(--surface);
+}

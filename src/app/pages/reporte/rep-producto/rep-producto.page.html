@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Reporte: Stock Bajo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- GRID -->
+  <div class="grid-stock">
+
+    <ion-card *ngFor="let p of productosBajoStock">
+
+      <!-- IMAGEN -->
+      <img
+        *ngIf="p.imagenUrl"
+        [src]="p.imagenUrl"
+        class="producto-img"
+        alt="producto"
+      />
+
+      <!-- HEADER -->
+      <ion-card-header>
+        <ion-card-title>
+          {{ p.nombre }}
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Stock: {{ p.stock }}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <!-- CONTENIDO -->
+      <ion-card-content>
+
+        <p>
+          <strong>Precio:</strong>
+          S/ {{ p.precio }}
+        </p>
+
+        <p>
+          <strong>Categoría:</strong>
+          {{ p.categoriaId }}
+        </p>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+  <!-- MENSAJE SI NO HAY STOCK -->
+  <p *ngIf="productosBajoStock.length === 0" class="no-stock">
+    Todos los productos tienen stock suficiente.
+  </p>
+
+</ion-content>

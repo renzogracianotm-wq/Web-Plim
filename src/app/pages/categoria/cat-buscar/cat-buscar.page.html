@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Buscar Categorías</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding cat-page">
+
+  <!-- BUSCADOR -->
+  <ion-item class="search-item">
+    <ion-icon name="search-outline" slot="start"></ion-icon>
+    <ion-input
+      placeholder="Buscar categoría..."
+      [(ngModel)]="textoBuscar"
+      (ionInput)="filtrar()">
+    </ion-input>
+  </ion-item>
+
+  <!-- GRID -->
+  <div class="cat-grid">
+
+    <ion-card *ngFor="let cat of categoriasFiltradas" class="cat-card">
+
+      <ion-card-content>
+
+        <div class="cat-data">
+          <p><strong>ID:</strong> {{ cat.categoriaId }}</p>
+          <p><strong>Nombre:</strong> {{ cat.nombre }}</p>
+          <p><strong>Descripción:</strong> {{ cat.descripcion }}</p>
+        </div>
+
+        <img
+          [src]="cat.imagenUrl"
+          class="preview-img"
+        />
+
+        <div class="btn-group">
+          <ion-button
+            size="small"
+            fill="outline"
+            color="primary"
+            (click)="editar(cat)">
+            Editar
+          </ion-button>
+
+          <ion-button
+            size="small"
+            fill="outline"
+            color="danger"
+            (click)="eliminar(cat.docId)">
+            Eliminar
+          </ion-button>
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

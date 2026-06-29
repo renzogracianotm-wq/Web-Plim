@@ -1,0 +1,144 @@
+/* =========================
+   CONTENIDO GENERAL
+========================= */
+
+ion-content {
+  --background: var(--background);
+  color: var(--text);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   GRID PRINCIPAL
+========================= */
+
+ion-content {
+  --padding-start: 10px;
+  --padding-end: 10px;
+}
+
+/* contenedor grid */
+.grid-stock {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr); /* 📱 celular por defecto */
+}
+
+/* =========================
+   CARD
+========================= */
+
+ion-card {
+  background: var(--surface);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  transition: 0.2s;
+}
+
+ion-card:hover {
+  transform: translateY(-3px);
+}
+
+/* IMAGEN */
+.producto-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+/* TEXTO */
+ion-card-title {
+  font-size: 1rem;
+  color: var(--text);
+}
+
+ion-card-subtitle {
+  color: #ff4d4d;
+  font-weight: 600;
+}
+
+ion-card-content p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* =========================
+   MENSAJE VACÍO
+========================= */
+
+.no-stock {
+  text-align: center;
+  margin-top: 40px;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   📱 TABLET
+========================= */
+
+@media (min-width: 768px) {
+  .grid-stock {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .producto-img {
+    height: 160px;
+  }
+}
+
+/* =========================
+   💻 PC
+========================= */
+
+@media (min-width: 1200px) {
+  .grid-stock {
+    grid-template-columns: repeat(5, 1fr); /* 🔥 5 columnas */
+  }
+
+  .producto-img {
+    height: 170px;
+  }
+}
+
+/* =========================
+   🌸 TEMA ROSA
+========================= */
+
+.theme-pink ion-card {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+
+.theme-blue ion-card {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+
+.theme-dark ion-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}

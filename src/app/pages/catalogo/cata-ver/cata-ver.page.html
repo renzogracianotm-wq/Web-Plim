@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Catálogo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Buscador -->
+  <ion-item>
+    <ion-label position="floating">Buscar producto</ion-label>
+    <ion-input [(ngModel)]="busqueda" (ionInput)="onBusquedaChange()"></ion-input>
+  </ion-item>
+
+  <!-- Filtro por categoría -->
+  <ion-item>
+    <ion-label>Categoría</ion-label>
+    <ion-select [(ngModel)]="categoriaSeleccionada" (ionChange)="onCategoriaChange()" placeholder="Todas">
+      <ion-select-option *ngFor="let cat of categorias" [value]="cat.categoriaId">
+        {{ cat.nombre }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <!-- Grid de productos -->
+  <div class="grid-container">
+    <div class="grid-item" *ngFor="let p of productosFiltrados" (click)="verDetalle(p)">
+      <img *ngIf="p.imagenUrl" [src]="p.imagenUrl" class="producto-img"/>
+      <h3>{{ p.nombre }}</h3>
+      <p>Precio: S/{{ p.precio }}</p>
+      <p>Stock: {{ p.stock }}</p>
+    </div>
+  </div>
+
+
+</ion-content>

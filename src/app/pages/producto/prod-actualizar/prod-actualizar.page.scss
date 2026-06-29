@@ -1,0 +1,172 @@
+/* =========================
+   CONTENIDO GENERAL
+========================= */
+
+ion-content {
+  --background: var(--background);
+  color: var(--text);
+  padding: 16px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+ion-toolbar {
+  --background: var(--primary);
+  --color: #fff;
+}
+
+ion-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+ion-menu-button {
+  color: #fff;
+}
+
+/* =========================
+   CARD PRINCIPAL
+========================= */
+
+ion-card {
+  background: var(--surface);
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+}
+
+ion-card-content {
+  padding: 16px;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* INPUTS */
+ion-item {
+  --background: var(--surface);
+  border-radius: 12px;
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+}
+
+/* TEXTO */
+ion-input {
+  --color: var(--text);
+}
+
+/* LABEL */
+ion-label {
+  color: var(--text-secondary);
+}
+
+/* =========================
+   IMAGEN PREVIEW
+========================= */
+
+.preview-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: 5px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+.save-btn {
+  --background: var(--primary);
+  --border-radius: 12px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (min-width: 768px) {
+
+  ion-card {
+    max-width: 850px;
+  }
+
+  .preview-img {
+    height: 280px;
+  }
+
+  form {
+    gap: 16px;
+  }
+}
+
+/* =========================
+   PC
+========================= */
+
+@media (min-width: 1200px) {
+
+  ion-content {
+    max-width: 1100px;
+    margin: auto;
+  }
+
+  ion-card {
+    max-width: 900px;
+  }
+
+  ion-card-content {
+    padding: 24px;
+  }
+
+  .preview-img {
+    height: 320px;
+  }
+}
+
+/* =========================
+   🌸 TEMA ROSA
+========================= */
+
+.theme-pink ion-card {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
+
+/* =========================
+   🔵 TEMA AZUL
+========================= */
+
+.theme-blue ion-card {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
+
+/* =========================
+   🌙 TEMA OSCURO
+========================= */
+
+.theme-dark ion-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.theme-dark ion-item {
+  --background: var(--surface);
+}
+
+.theme-dark .preview-img {
+  border: 1px solid rgba(255,255,255,0.08);
+}

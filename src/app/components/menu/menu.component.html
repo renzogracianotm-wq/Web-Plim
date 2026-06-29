@@ -1,0 +1,138 @@
+<ion-menu side="start" menuId="first" contentId="main-content">
+
+  <ion-header>
+    <ion-toolbar class="xd">
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="full-height">
+
+    <ion-list class="menu-list">
+
+      <ion-accordion-group expand="compact">
+
+        <!-- Catálogo -->
+        <ion-item lines="none" button routerLink="/cata-ver">
+          <ion-icon name="apps-sharp" slot="start"></ion-icon>
+          <ion-label>Catálogo</ion-label>
+        </ion-item>
+
+        <!-- Inventario -->
+        <ion-accordion value="inv">
+
+          <ion-item slot="header" lines="none">
+            <ion-icon name="file-tray-stacked-sharp" slot="start"></ion-icon>
+            <ion-label>Inventario</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+
+            <ion-item lines="none" button routerLink="/prod-registro">
+              <ion-icon name="add-circle-sharp" slot="start"></ion-icon>
+              <ion-label>Agregar productos</ion-label>
+            </ion-item>
+
+            <ion-item lines="none" button routerLink="/prod-buscar">
+              <ion-icon name="grid-sharp" slot="start"></ion-icon>
+              <ion-label>Buscar producto</ion-label>
+            </ion-item>
+
+            <ion-item lines="none" button routerLink="/prod-actualizar">
+              <ion-icon name="create-sharp" slot="start"></ion-icon>
+              <ion-label>Actualizar producto</ion-label>
+            </ion-item>
+
+          </ion-list>
+
+        </ion-accordion>
+
+        <!-- Categorías -->
+        <ion-accordion value="cat">
+
+          <ion-item slot="header" lines="none">
+            <ion-icon name="file-tray-sharp" slot="start"></ion-icon>
+            <ion-label>Categorías</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+
+            <ion-item lines="none" button routerLink="/cat-registro">
+              <ion-icon name="add-circle-sharp" slot="start"></ion-icon>
+              <ion-label>Registro Categoría</ion-label>
+            </ion-item>
+
+            <ion-item lines="none" button routerLink="/cat-buscar">
+              <ion-icon name="grid-sharp" slot="start"></ion-icon>
+              <ion-label>Buscar Categoría</ion-label>
+            </ion-item>
+
+            <ion-item lines="none" button routerLink="/cat-actualizar">
+              <ion-icon name="create-sharp" slot="start"></ion-icon>
+              <ion-label>Actualizar Categoría</ion-label>
+            </ion-item>
+
+          </ion-list>
+
+        </ion-accordion>
+
+        <!-- Carrito -->
+        <ion-item lines="none" button routerLink="/car-compra">
+          <ion-icon name="cart-sharp" slot="start"></ion-icon>
+          <ion-label>Carrito</ion-label>
+        </ion-item>
+
+        <!-- Mis Compras -->
+        <ion-item lines="none" button routerLink="/mi-compra">
+          <ion-icon name="bag-sharp" slot="start"></ion-icon>
+          <ion-label>Mis Compras</ion-label>
+        </ion-item>
+
+        <!-- Reportes -->
+        <ion-item lines="none" button routerLink="/rep-producto">
+          <ion-icon name="alert-circle-sharp" slot="start"></ion-icon>
+          <ion-label>Reportes</ion-label>
+        </ion-item>
+
+         <!-- Cuenta -->
+        <ion-accordion value="pro">
+
+          <ion-item slot="header" lines="none">
+            <ion-icon name="person-sharp" slot="start"></ion-icon>
+            <ion-label>Mi Cuenta</ion-label>
+          </ion-item>
+
+          <ion-list slot="content">
+
+            <ion-item lines="none" button routerLink="/cat-registro">
+              <ion-icon name="person-circle-sharp" slot="start"></ion-icon>
+              <ion-label>Perfil</ion-label>
+            </ion-item>
+
+            <ion-item lines="none" button routerLink="/cat-buscar">
+              <ion-icon name="receipt-sharp" slot="start"></ion-icon>
+              <ion-label>Pedidos</ion-label>
+            </ion-item>
+
+            <ion-item lines="none" button routerLink="/per-temas">
+              <ion-icon name="color-palette-sharp" slot="start"></ion-icon>
+              <ion-label>Temas</ion-label>
+            </ion-item>
+
+          </ion-list>
+
+        </ion-accordion>
+
+        <!-- Salir -->
+        <ion-item lines="none" button routerLink="/login">
+          <ion-icon name="arrow-back-sharp" slot="start"></ion-icon>
+          <ion-label>Salir</ion-label>
+        </ion-item>
+
+      </ion-accordion-group>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-menu>

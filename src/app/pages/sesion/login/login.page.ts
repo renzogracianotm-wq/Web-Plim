@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonButton, IonMenu, MenuController } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -16,7 +16,7 @@ import { getRemoteConfig, fetchAndActivate, getValue } from "firebase/remote-con
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   imports: [ ReactiveFormsModule, CommonModule, IonContent, IonHeader, IonTitle,
-    IonToolbar, IonItem, IonLabel, IonInput, IonButton  ],
+    IonToolbar, IonItem, IonLabel, IonInput, IonButton, IonMenu  ],
   standalone: true
 })
 export class LoginPage implements OnInit {
@@ -31,14 +31,14 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private themeService: ThemeService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private menuCtrl: MenuController
   ) {}
 
   
   // CICLO DE VIDA  
   ngOnInit() {
-    this.loadThemeFromFirebase();
-
+    this.loadThemeFromFirebase();    
     this.loginForm = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -99,6 +99,16 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  ionViewWillEnter() {
+  this.menuCtrl.enable(false);
+  this.menuCtrl.swipeGesture(false);
+  }
+
+  ionViewWillLeave() {
+  this.menuCtrl.enable(true);
+  this.menuCtrl.swipeGesture(true);
   }
 
   async loadThemeFromFirebase() {

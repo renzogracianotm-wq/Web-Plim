@@ -1,44 +1,56 @@
+<!-- CONTENIDO PRINCIPAL -->
 <ion-content class="login-content" fullscreen="true">
 
+  <!-- CONTENEDOR GENERAL DEL LOGIN -->
   <div class="login-container">
 
+    <!-- CAJA DEL FORMULARIO -->
     <div class="login-box">
 
-      <!-- IMAGEN -->
+      <!-- LOGO / IMAGEN -->
       <div class="login-image">
         <img src="assets/icon/Logo.jpg" alt="login" />
       </div>
 
+      <!-- TÍTULO -->
       <h1 class="title">Iniciar Sesión</h1>
 
+      <!-- FORMULARIO LOGIN -->
       <form [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
 
+        <!-- INPUT: CORREO -->
         <ion-item class="input-item">
           <ion-label position="stacked">Correo</ion-label>
           <ion-input type="email" formControlName="correo"></ion-input>
         </ion-item>
 
+        <!-- INPUT: CONTRASEÑA -->
         <ion-item class="input-item">
           <ion-label position="stacked">Contraseña</ion-label>
           <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
 
+        <!-- BOTÓN LOGIN -->
         <ion-button expand="block" type="submit" class="login-btn">
           Iniciar Sesión
         </ion-button>
 
       </form>
 
+      <!-- OPCIONES DE NAVEGACIÓN -->
+
+      <!-- REGISTRO -->
       <p class="register">
         ¿No tienes cuenta?
         <a (click)="irARegistro()">Regístrate</a>
       </p>
 
+      <!-- INVITADO -->
       <p class="guest">
         <b (click)="irACatalogo()">Sesión como Invitado</b>
       </p>
 
-      <!-- 🎨 BOTONES DE TEMA (prueba) -->
+      <!-- CAMBIO DE TEMA (TEST) -->
       <div class="themes">
         <ion-button size="small" (click)="setTheme('theme-pink')">🌸</ion-button>
         <ion-button size="small" (click)="setTheme('theme-blue')">🔵</ion-button>

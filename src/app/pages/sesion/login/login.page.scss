@@ -1,14 +1,16 @@
-
-/* =========================
-   🌍 FONDO GENERAL
-========================= */
+/* =====================================================
+   BASE / FONDO GENERAL
+===================================================== */
 ion-content {
   --background: var(--background);
 }
 
-/* =========================
-   📦 CONTENEDOR GENERAL
-========================= */
+
+/* =====================================================
+   ESTRUCTURA PRINCIPAL
+===================================================== */
+
+/* CONTENEDOR GENERAL */
 .login-container {
   display: flex;
   justify-content: center;
@@ -17,12 +19,11 @@ ion-content {
   width: 100%;
 }
 
-/* =========================
-   🧱 CAJA LOGIN
-========================= */
+/* CAJA DEL LOGIN */
 .login-box {
   width: 100%;
   max-width: 420px;
+
   padding: 30px;
   border-radius: 16px;
 
@@ -32,56 +33,68 @@ ion-content {
   text-align: center;
 }
 
-/* =========================
-   🖼️ IMAGEN
-========================= */
+
+/* =====================================================
+   LOGO / IMAGEN
+===================================================== */
+
 .login-image img {
   width: 120px;
   margin-bottom: 10px;
 }
 
-/* =========================
-   🏷️ TÍTULO
-========================= */
+
+/* =====================================================
+   TÍTULO
+===================================================== */
+
 .title {
   color: var(--primary);
   font-size: 26px;
-  margin-bottom: 20px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
-/* =========================
-   🧾 INPUTS
-========================= */
+
+/* =====================================================
+   FORMULARIO / INPUTS
+===================================================== */
+
 .input-item {
   margin-bottom: 15px;
   --background: transparent;
   color: var(--text);
 }
 
-/* =========================
-   🔘 BOTÓN LOGIN
-========================= */
+
+/* =====================================================
+   BOTÓN PRINCIPAL
+===================================================== */
+
 .login-btn {
   --background: var(--primary);
   --border-radius: 10px;
   margin-top: 10px;
 }
 
-/* =========================
-   🔗 REGISTRO
-========================= */
+
+/* =====================================================
+   LINKS / NAVEGACIÓN
+===================================================== */
+
+/* REGISTRO */
 .register {
   margin-top: 15px;
   color: var(--text-secondary);
-
-  a {
-    color: var(--primary);
-    font-weight: bold;
-    cursor: pointer;
-  }
 }
 
+.register a {
+  color: var(--primary);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* INVITADO */
 .guest {
   text-align: center;
   margin: 8px 0;
@@ -96,9 +109,11 @@ ion-content {
   text-decoration: underline;
 }
 
-/* =========================
-   🎨 BOTONES DE TEMA
-========================= */
+
+/* =====================================================
+   CAMBIO DE TEMA
+===================================================== */
+
 .themes {
   margin-top: 10px;
   display: flex;
@@ -106,15 +121,17 @@ ion-content {
   gap: 10px;
 }
 
-/* =========================
-   📱 MOBILE
-========================= */
+
+/* =====================================================
+   RESPONSIVE (MÓVIL)
+===================================================== */
+
 @media (max-width: 768px) {
   .login-box {
     width: 90%;
+    padding: 20px;
     box-shadow: none;
     border-radius: 0;
-    padding: 20px;
   }
 
   .title {
@@ -122,9 +139,11 @@ ion-content {
   }
 }
 
-/* =========================
-   💻 PC (FULL SCREEN STYLE)
-========================= */
+
+/* =====================================================
+   PANTALLA GRANDE (PC)
+===================================================== */
+
 @media (min-width: 1024px) {
   .login-container {
     background: linear-gradient(

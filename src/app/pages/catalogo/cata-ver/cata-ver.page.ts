@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { MenuComponent } from 'src/app/components/menu/menu.component';
 import { Firestore, collection,collectionData, query, where,getDocs,updateDoc,doc } from '@angular/fire/firestore';
 import {  IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonContent,  IonItem,
-  IonLabel,  IonInput,  IonSelect,  IonSelectOption } from '@ionic/angular/standalone';
-
-import { Router } from '@angular/router';
+  IonLabel,  IonInput,  IonSelect,  IonSelectOption, IonButton,IonIcon,IonSearchbar } from '@ionic/angular/standalone';
+import { Router,RouterModule } from '@angular/router';
 @Component({
   selector: 'app-cata-ver',
   templateUrl: './cata-ver.page.html',
@@ -14,7 +13,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [CommonModule,    FormsModule,    MenuComponent,    IonHeader,    
     IonToolbar,    IonButtons,    IonMenuButton,    IonTitle,    IonContent,
-    IonItem,    IonLabel,    IonInput,    IonSelect,    IonSelectOption]})
+    IonItem,    IonLabel,    IonInput,    IonSelect, IonSelectOption,IonButton,IonIcon,IonSearchbar, RouterModule]})
 export class CataVerPage implements OnInit {
   productos: any[] = [];
   productosFiltrados: any[] = [];
@@ -22,12 +21,14 @@ export class CataVerPage implements OnInit {
   busqueda: string = '';
   categoriaSeleccionada: string = '';
 
-  constructor(private firestore: Firestore, private router: Router) {}
+  constructor(private firestore: Firestore, private router: Router) {
+    
+  }
 
   ngOnInit() {
     this.cargarCategorias();
     this.cargarProductos();
-  }
+  }  
 
   verDetalle(producto: any) {
   // pasamos todo el producto como parámetro serializado en URL
@@ -72,6 +73,5 @@ export class CataVerPage implements OnInit {
   onCategoriaChange() {
     this.filtrarProductos();
   }  
-
 }
 

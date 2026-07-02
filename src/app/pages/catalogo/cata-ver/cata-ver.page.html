@@ -1,25 +1,67 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Catálogo</ion-title>
+
+    <div class="toolbar-container">
+
+      <!-- Menú y logo -->
+      <div class="left-section">
+
+        <ion-buttons>
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+
+        <span class="menu-text">Menú</span>
+
+      </div>
+
+      <!-- Buscador -->
+      <div class="search-section">
+
+        <ion-searchbar
+          placeholder="Buscar productos..."
+          [(ngModel)]="busqueda"
+          (ionInput)="onBusquedaChange()"
+          show-clear-button="focus">
+        </ion-searchbar>
+
+      </div>
+
+      <!-- Usuario y carrito -->
+      <div class="right-section">
+
+        <div class="separator"></div>
+
+        <div
+          class="user-info"
+          routerLink="/login">
+
+          <small>Hola,</small>
+          <strong>Inicia sesión</strong>
+
+        </div>
+
+        <ion-buttons>
+          <ion-button fill="clear" routerLink="/car-compra">
+            <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+
+      </div>
+
+    </div>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
 
   <div class="container">
 
-    <!-- Buscador -->
+    <!-- Categoría -->
     <ion-item>
-      <ion-label position="floating">Buscar producto</ion-label>
-      <ion-input [(ngModel)]="busqueda" (ionInput)="onBusquedaChange()"></ion-input>
-    </ion-item>
 
-    <!-- Filtro por categoría -->
-    <ion-item>
       <ion-label>Categoría</ion-label>
+
       <ion-select
         [(ngModel)]="categoriaSeleccionada"
         (ionChange)="onCategoriaChange()"
@@ -32,11 +74,15 @@
           {{ cat.nombre }}
 
         </ion-select-option>
+
       </ion-select>
+
     </ion-item>
 
-    <!-- Grid de productos -->
+    <!-- Productos -->
+
     <div class="grid-container">
+
       <div
         class="grid-item"
         *ngFor="let p of productosFiltrados"
@@ -45,13 +91,16 @@
         <img
           *ngIf="p.imagenUrl"
           [src]="p.imagenUrl"
-          class="producto-img"/>
+          class="producto-img">
 
         <h3>{{ p.nombre }}</h3>
-        <p>Precio: S/{{ p.precio }}</p>
+
+        <p>S/{{ p.precio }}</p>
+
         <p>Stock: {{ p.stock }}</p>
 
       </div>
+
     </div>
 
   </div>

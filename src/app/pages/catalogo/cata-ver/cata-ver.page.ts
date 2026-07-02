@@ -17,7 +17,12 @@ import { Router,RouterModule } from '@angular/router';
 export class CataVerPage implements OnInit {
   productos: any[] = [];
   productosFiltrados: any[] = [];
+
   categorias: any[] = [];
+  categoriasVisibles: any[] = [];
+
+  indiceCategoria = 0;
+
   busqueda: string = '';
   categoriaSeleccionada: string = '';
 
@@ -36,15 +41,6 @@ export class CataVerPage implements OnInit {
     state: { producto }
   });
 }
-
-  cargarCategorias() {
-    const ref = collection(this.firestore, 'categoria');
-    const q = query(ref, where('activo', '==', true));
-    collectionData(q).subscribe(data => {
-      this.categorias = data;
-    });
-  }
-
   cargarProductos() {
     const ref = collection(this.firestore, 'producto');
     const q = query(ref, where('activo', '==', true));
@@ -52,6 +48,61 @@ export class CataVerPage implements OnInit {
       this.productos = data;
       this.filtrarProductos();
     });
+  }
+
+  cargarCategorias() {
+    const ref = collection(this.firestore, 'categoria');
+    const q = query(
+      ref,
+      where('activo', '==', true)
+    );
+    collectionData(q, { idField: 'docId' })
+      .subscribe((data: any[]) => {
+        this.categorias = data;
+        this.actualizarCategorias();
+      });
+  }
+  
+   actualizarCategorias() {
+
+    this.categoriasVisibles =      this.categorias.slice(
+        this.indiceCategoria,
+        this.indiceCategoria + 6
+      );
+
+  }
+
+  siguienteCategoria() {
+  if (this.indiceCategoria + 6 < this.categorias.length) {
+    this.indiceCategoria += 6;
+    this.actualizarCategorias();
+  }
+}
+
+  anteriorCategoria() {
+  if (this.indiceCategoria > 0) {
+    this.indiceCategoria -= 6;
+    if (this.indiceCategoria < 0) {
+      this.indiceCategoria = 0;
+    }
+    this.actualizarCategorias();
+  }
+}
+
+  seleccionarCategoria(categoria: any) {
+
+    this.categoriaSeleccionada = categoria.categoriaId;
+
+    this.filtrarProductos();
+
+  }
+
+  mostrarTodasCategorias() {
+
+    this.categoriaSeleccionada = '';
+
+    this.filtrarProductos();
+
   }
 
   filtrarProductos() {

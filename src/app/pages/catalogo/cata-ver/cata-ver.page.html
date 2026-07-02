@@ -3,7 +3,7 @@
 
     <div class="toolbar-container">
 
-      <!-- Menú y logo -->
+      <!-- Menú -->
       <div class="left-section">
 
         <ion-buttons>
@@ -26,7 +26,7 @@
 
       </div>
 
-      <!-- Usuario y carrito -->
+      <!-- Usuario -->
       <div class="right-section">
 
         <div class="separator"></div>
@@ -41,9 +41,18 @@
         </div>
 
         <ion-buttons>
-          <ion-button fill="clear" routerLink="/car-compra">
-            <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+
+          <ion-button
+            fill="clear"
+            routerLink="/car-compra">
+
+            <ion-icon
+              slot="icon-only"
+              name="cart-outline">
+            </ion-icon>
+
           </ion-button>
+
         </ion-buttons>
 
       </div>
@@ -57,29 +66,75 @@
 
   <div class="container">
 
-    <!-- Categoría -->
-    <ion-item>
+    <!--=========================
+        CATEGORÍAS
+    ==========================-->
 
-      <ion-label>Categoría</ion-label>
+    <div class="categorias-wrapper">
 
-      <ion-select
-        [(ngModel)]="categoriaSeleccionada"
-        (ionChange)="onCategoriaChange()"
-        placeholder="Todas">
+      <button
+        class="categoria-btn"
+        (click)="anteriorCategoria()">
 
-        <ion-select-option
-          *ngFor="let cat of categorias"
-          [value]="cat.categoriaId">
+        &#10094;
 
-          {{ cat.nombre }}
+      </button>
 
-        </ion-select-option>
+      <div class="categorias-container">
 
-      </ion-select>
+        <!-- Todas -->
 
-    </ion-item>
+        <div
+          class="categoria-card"
+          [class.activa]="categoriaSeleccionada === ''"
+          (click)="mostrarTodasCategorias()">
 
-    <!-- Productos -->
+          <div class="categoria-imagen todas">
+
+            <ion-icon name="apps-outline"></ion-icon>
+
+          </div>
+
+          <span>Todas</span>
+
+        </div>
+
+        <!-- Categorías -->
+
+        <div
+          class="categoria-card"
+          *ngFor="let cat of categoriasVisibles"
+          [class.activa]="categoriaSeleccionada === cat.categoriaId"
+          (click)="seleccionarCategoria(cat)">
+
+          <img
+            [src]="cat.imagenUrl"
+            [alt]="cat.nombre"
+            class="categoria-imagen">
+
+          <span>
+
+            {{cat.nombre}}
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        class="categoria-btn"
+        (click)="siguienteCategoria()">
+
+        &#10095;
+
+      </button>
+
+    </div>
+
+    <!--=========================
+        PRODUCTOS
+    ==========================-->
 
     <div class="grid-container">
 

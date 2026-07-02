@@ -158,3 +158,8 @@ ion-select {
 .theme-dark ion-item {
   --background: var(--surface);
 }
+
+.container {
+  width: min(1500px, 100%);
+  margin: 0 auto;
+}

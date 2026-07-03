@@ -24,4 +24,50 @@ export class AuthService {
   logout() {
     return signOut(this.auth);
   }
+
+  fusionarCarrito(uid: string) {
+
+    const guestKey = 'carrito_guest';
+    const userKey = `carrito_${uid}`;
+
+    const guest = JSON.parse(
+      localStorage.getItem(guestKey) || '[]'
+    );
+
+    // Si no hay carrito de invitado, salir
+    if (guest.length === 0) return;
+
+    const user = JSON.parse(
+      localStorage.getItem(userKey) || '[]'
+    );
+
+    guest.forEach((producto: any) => {
+
+      const index = user.findIndex(
+        (p: any) => p.id === producto.id
+      );
+
+      if (index >= 0) {
+
+        user[index].cantidad = Math.min(
+          user[index].stock,
+          user[index].cantidad + producto.cantidad
+        );
+
+      } else {
+
+        user.push(producto);
+
+      }
+
+    });
+
+    localStorage.setItem(
+      userKey,
+      JSON.stringify(user)
+    );
+
+    localStorage.removeItem(guestKey);
+
+  }
 }

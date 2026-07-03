@@ -19,6 +19,7 @@ export class CarCompraPage implements OnInit {
 
    carrito: any[] = [];
   total: number = 0;
+  
 
   constructor(
     private firestore: Firestore,
@@ -26,30 +27,32 @@ export class CarCompraPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    onAuthStateChanged(this.auth, (user) => {
-    if (user) {
-      this.cargarCarrito(user.uid);
-    } else {
-      this.carrito = [];
-      this.total = 0;
-    }
-  });
+
+  onAuthStateChanged(this.auth, () => {
+    this.cargarCarrito();
+    });
+  }
+
+  private getCarritoKey(): string {
+    const uid = this.auth.currentUser?.uid;
+    return uid ? `carrito_${uid}` : 'carrito_guest';
   }
 
   // 🔥 CARGAR CARRITO
-  cargarCarrito(uid: string) {
+  cargarCarrito() {
 
-  this.carrito = JSON.parse(
-    localStorage.getItem(`carrito_${uid}`) || '[]'
-  );
+    this.carrito = JSON.parse(
+      localStorage.getItem(this.getCarritoKey()) || '[]'
+    );
 
-  this.carrito = this.carrito.map(p => ({
-    ...p,
-    cantidad: p.cantidad || 1
-  }));
+    this.carrito = this.carrito.map((p: any) => ({
+      ...p,
+      cantidad: p.cantidad || 1
+    }));
 
-  this.actualizarTotal();
-}
+    this.actualizarTotal();
+
+  }
 
   // 🔥 AUMENTAR
   aumentarCantidad(producto: any) {
@@ -72,15 +75,13 @@ export class CarCompraPage implements OnInit {
   // 🔥 GUARDAR LOCALSTORAGE
   guardarCarrito() {
 
-    const uid = this.auth.currentUser?.uid;
-    if (!uid) return;
+  localStorage.setItem(
+    this.getCarritoKey(),
+    JSON.stringify(this.carrito)
+  );
 
-    localStorage.setItem(
-      `carrito_${uid}`,
-      JSON.stringify(this.carrito)
-    );
+  this.actualizarTotal();
 
-    this.actualizarTotal();
   }
 
   // 🔥 TOTAL
@@ -97,7 +98,10 @@ export class CarCompraPage implements OnInit {
   async comprar() {
 
     const uid = this.auth.currentUser?.uid;
-    if (!uid) return;
+    if (!uid) {
+  alert('Debes iniciar sesión para realizar la compra');
+  return;
+  }
 
     const comprasRef = collection(this.firestore, 'compras');
 
@@ -146,7 +150,7 @@ export class CarCompraPage implements OnInit {
     }
 
     // limpiar carrito
-    localStorage.removeItem(`carrito_${uid}`);
+    localStorage.removeItem(this.getCarritoKey());
 
     this.carrito = [];
     this.total = 0;

@@ -37,7 +37,7 @@ export class PerTemasPage implements OnInit {
     if (savedTheme) {
       this.applyTheme(savedTheme);
     } else {
-      this.applyTheme('blue'); // default
+      this.applyTheme('""'); // default
     }
   }
 

@@ -56,6 +56,11 @@ export class CataDetallePage implements OnInit {
     }
   }
 
+  private getCarritoKey(): string {
+  const uid = this.auth.currentUser?.uid;
+  return uid ? `carrito_${uid}` : 'carrito_guest';
+}
+
   ngOnInit() {
     if (this.producto) {
       this.imagenPrincipal = this.producto.imagenes?.[0] ?? '';
@@ -67,46 +72,45 @@ export class CataDetallePage implements OnInit {
   // 🔥 AGREGAR AL CARRITO
   agregar() {
 
-    const uid = this.auth.currentUser?.uid;
+  const carritoKey = this.getCarritoKey();
 
-    if (!uid) {
-      alert('Debe iniciar sesión');
-      return;
+  let carrito = JSON.parse(
+    localStorage.getItem(carritoKey) || '[]'
+  );
+
+  const productId = this.producto.docId;
+
+  const index = carrito.findIndex(
+    (item: any) => item.id === productId
+  );
+
+  if (index !== -1) {
+
+    if (carrito[index].cantidad < carrito[index].stock) {
+      carrito[index].cantidad++;
     }
 
-    let carrito = JSON.parse(
-      localStorage.getItem(`carrito_${uid}`) || '[]'
-    );
+  } else {
 
-    const productId = this.producto.docId || this.producto.id;
+    carrito.push({
+      id: this.producto.docId,
+      nombre: this.producto.nombre,
+      precio: this.producto.precio,
+      stock: this.producto.stock,
+      categoriaId: this.producto.categoriaId,
+      imagenes: this.producto.imagenes || [],
+      cantidad: 1
+    });
 
-    const index = carrito.findIndex(
-      (item: any) => item.id === productId
-    );
+  }
 
-    if (index !== -1) {
-      carrito[index].cantidad =
-        (carrito[index].cantidad || 1) + 1;
-    } else {
-      carrito.push({
-        id: productId,
-        nombre: this.producto.nombre,
-        precio: this.producto.precio,
-        stock: this.producto.stock,
-        categoriaId: this.producto.categoriaId,
-        imagenes: Array.isArray(this.producto.imagenes)
-          ? this.producto.imagenes
-          : [],
-        cantidad: 1
-      });
-    }
+  localStorage.setItem(
+    carritoKey,
+    JSON.stringify(carrito)
+  );
 
-    localStorage.setItem(
-      `carrito_${uid}`,
-      JSON.stringify(carrito)
-    );
+  this.router.navigate(['/car-compra']);
 
-    this.router.navigate(['/car-compra']);
   }
 
   // 🔥 RELACIONADOS

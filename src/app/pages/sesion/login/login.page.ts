@@ -60,7 +60,11 @@ export class LoginPage implements OnInit {
     const { correo, password } = this.loginForm.value;
 
     try {
-      await this.authService.login(correo, password);
+      const cred = await this.authService.login(correo, password);
+
+      this.authService.fusionarCarrito(
+        cred.user.uid
+      );
 
       await this.mostrarAlerta(
         'Éxito',
@@ -129,4 +133,9 @@ export class LoginPage implements OnInit {
       this.setTheme(theme);
     }
   }
+  cerrarSesion() {
+  this.authService.logout().then(() => {
+    this.router.navigate(['/login']);
+  });
+}
 }

@@ -40,23 +40,73 @@ ion-content.detalle-page {
 }
 
 /* =====================
-   IMAGEN
+   BLOQUE IMAGEN + GALERÍA
 ===================== */
 
 .detalle-imagen {
-  flex: 1;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
 }
 
-.detalle-imagen img {
+/* IMAGEN PRINCIPAL */
+.imagen-principal {
   width: 100%;
   max-width: 450px;
   border-radius: 18px;
   object-fit: cover;
   background: #f2f2f2;
+  transition: 0.3s ease;
 }
 
 /* =====================
-   INFO
+   GALERÍA MINIATURAS
+===================== */
+
+.galeria {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 350px;
+  overflow-y: auto;
+
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+/* MINIATURAS */
+.miniatura {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.2s ease;
+}
+
+.miniatura:hover {
+  border: 2px solid var(--primary);
+  transform: scale(1.05);
+}
+
+.miniatura.activa {
+  border: 2px solid var(--primary);
+  transform: scale(1.08);
+}
+
+/* SCROLLBAR GALERÍA */
+.galeria::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.galeria::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+/* =====================
+   INFO PRODUCTO
 ===================== */
 
 .detalle-info {
@@ -148,12 +198,27 @@ ion-button {
     padding: 10px;
   }
 
-  .detalle-imagen img {
-    max-width: 100%;
+  .detalle-imagen {
+    flex-direction: column;
+  }
+
+  .galeria {
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: none;
+  }
+
+  .miniatura {
+    width: 55px;
+    height: 55px;
   }
 
   .btn-group {
     flex-direction: column;
+  }
+
+  .imagen-principal {
+    max-width: 100%;
   }
 }
 

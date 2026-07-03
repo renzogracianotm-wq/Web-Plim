@@ -149,8 +149,8 @@
         (click)="verDetalle(p)">
 
         <img
-          *ngIf="p.imagenUrl"
-          [src]="p.imagenUrl"
+          *ngIf="p.imagenes || p.imagenUrl"
+          [src]="p.imagenes?.[0] || p.imagenUrl"
           class="producto-img">
 
         <h3>{{ p.nombre }}</h3>

@@ -40,6 +40,8 @@ export class CataDetallePage implements OnInit {
 
   producto: any;
   productosRelacionados: any[] = [];
+  imagenPrincipal: string = '';
+  imagenActiva: string = '';
 
   constructor(
   private router: Router,
@@ -55,7 +57,12 @@ export class CataDetallePage implements OnInit {
 
   ngOnInit() {
     if (this.producto) {
+
+    this.imagenPrincipal =
+      this.producto.imagenes?.[0] ?? '';
+
     this.cargarRelacionados();
+
   }
   }
 
@@ -122,10 +129,20 @@ verRelacionado(producto: any) {
 
   this.producto = producto;
 
-  // limpiar scroll arriba tipo Amazon
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  this.imagenPrincipal =
+    this.producto.imagenes?.[0] ?? '';
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 
   this.cargarRelacionados();
+
 }
 
+cambiarImagen(img: string) {
+  this.imagenPrincipal = img;
+  this.imagenActiva = img;
+}
 }

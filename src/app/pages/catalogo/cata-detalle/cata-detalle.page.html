@@ -14,8 +14,27 @@
 
     <!-- IMAGEN -->
     <div class="detalle-imagen">
-      <img [src]="producto.imagenUrl" />
-    </div>
+
+  <!-- Imagen principal -->
+  <img
+    class="imagen-principal"
+    [src]="imagenPrincipal">
+
+  <!-- Miniaturas -->
+  <div
+    class="galeria"
+    *ngIf="producto.imagenes?.length > 1">
+
+    <img
+      *ngFor="let img of producto.imagenes"
+      [src]="img"
+      class="miniatura"
+      [class.activa]="img === imagenActiva"
+      (click)="cambiarImagen(img)">
+
+  </div>
+
+</div>
 
     <!-- INFO -->
     <div class="detalle-info">
@@ -52,8 +71,9 @@
       (click)="verRelacionado(p)"
       button>
 
-      <img [src]="p.imagenUrl" />
-
+      <img
+  *ngIf="p.imagenes?.length"
+  [src]="p.imagenes[0]" />
       <ion-card-header>
         <ion-card-title>{{ p.nombre }}</ion-card-title>
         <ion-card-subtitle>S/{{ p.precio }}</ion-card-subtitle>

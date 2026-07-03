@@ -34,29 +34,35 @@
         <div
           class="user-info"
           routerLink="/login">
-
           <small>Hola,</small>
           <strong>Inicia sesión</strong>
-
         </div>
 
         <ion-buttons>
+          <ion-button
+            fill="clear"
+            routerLink="/login">
+            <ion-icon
+              slot="icon-only"
+              name="person-sharp">
+            </ion-icon>
+          </ion-button>
+        </ion-buttons>
 
+        <div class="separator"></div>                                                                                     
+
+        <ion-buttons>
           <ion-button
             fill="clear"
             routerLink="/car-compra">
-
             <ion-icon
               slot="icon-only"
               name="cart-sharp">
             </ion-icon>
-
           </ion-button>
-
         </ion-buttons>
 
       </div>
-
     </div>
 
   </ion-toolbar>
@@ -85,18 +91,18 @@
         <!-- Todas -->
 
         <div
-  class="categoria-card"
-  [class.activa]="categoriaSeleccionada === ''"
-  (click)="mostrarTodasCategorias()">
+        class="categoria-card"
+        [class.activa]="categoriaSeleccionada === ''"
+        (click)="mostrarTodasCategorias()">
 
-  <img
-    src="assets/icon/Logo.jpg"
-    alt="Todas"
-    class="categoria-imagen">
+        <img
+          src="assets/icon/Logo.jpg"
+          alt="Todas"
+          class="categoria-imagen">
 
-  <span>Todas</span>
+        <span>Todas</span>
 
-</div>
+      </div>
 
         <!-- Categorías -->
 

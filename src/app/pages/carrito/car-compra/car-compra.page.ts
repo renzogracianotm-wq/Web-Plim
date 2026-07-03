@@ -1,18 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  IonCardContent,
-  IonButton } from '@ionic/angular/standalone';
+import { IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonContent,  IonCard,  
+  IonCardHeader,  IonCardTitle,  IonCardSubtitle,  IonCardContent,  IonButton } from '@ionic/angular/standalone';
 import { Firestore, collection,collectionData, query, where,getDoc,updateDoc,doc ,addDoc, serverTimestamp } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 
@@ -21,19 +11,9 @@ import { Auth } from '@angular/fire/auth';
   templateUrl: './car-compra.page.html',
   styleUrls: ['./car-compra.page.scss'],
   standalone: true,
-  imports: [IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonContent,
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
-    IonButton, CommonModule, FormsModule]
-})
+  imports: [IonHeader,    IonToolbar,    IonButtons,    IonMenuButton,    IonTitle,
+    IonContent,    IonCard,    IonCardHeader,    IonCardTitle,    IonCardSubtitle,
+    IonCardContent,    IonButton, CommonModule, FormsModule]})
 export class CarCompraPage implements OnInit {
 
   carrito: any[] = [];

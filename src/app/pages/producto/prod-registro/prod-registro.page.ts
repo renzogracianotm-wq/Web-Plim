@@ -1,24 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,FormsModule, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import {
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonSelect,
-  IonSelectOption,
-  IonCard,
-  IonCardContent,
-  IonButton,
-  IonToggle,
-} from '@ionic/angular/standalone';
-
+import {  IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonContent,  IonItem,  IonLabel,  IonInput,  
+  IonSelect,  IonSelectOption,  IonCard,  IonCardContent,  IonButton,  IonToggle,} from '@ionic/angular/standalone';
 import { Firestore, collection, addDoc, query, where,getDocs,collectionData,updateDoc,doc } from '@angular/fire/firestore';
 
 @Component({
@@ -26,28 +10,11 @@ import { Firestore, collection, addDoc, query, where,getDocs,collectionData,upda
   templateUrl: './prod-registro.page.html',
   styleUrls: ['./prod-registro.page.scss'],
   standalone: true,
-  imports: [CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+  imports: [CommonModule,    FormsModule,    ReactiveFormsModule,
+    IonHeader,    IonToolbar,    IonButtons,    IonMenuButton,    IonTitle,    IonContent,    IonItem,    IonLabel,    
+    IonInput,    IonSelect,    IonSelectOption,    IonCard,    IonCardContent,    IonButton,    IonToggle] })
 
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonSelect,
-    IonSelectOption,
-    IonCard,
-    IonCardContent,
-    IonButton,
-    IonToggle]
-})
 export class ProdRegistroPage implements OnInit {
-
   categorias: any[] = [];
 
   productoForm = this.fb.group({

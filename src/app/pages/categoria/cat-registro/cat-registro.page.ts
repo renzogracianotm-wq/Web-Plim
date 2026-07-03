@@ -50,7 +50,7 @@ export class CatRegistroPage implements OnInit {
 
   }
 
-  onFileSelected(event: any) {
+     onFileSelected(event: any) {
 
     const file = event.target.files[0];
 

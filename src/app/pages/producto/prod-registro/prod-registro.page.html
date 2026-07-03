@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button ></ion-menu-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Registrar Producto</ion-title>
   </ion-toolbar>
@@ -31,49 +31,83 @@
 
         <ion-item>
           <ion-label position="floating">Precio</ion-label>
-          <ion-input type="number" formControlName="precio"></ion-input>
+          <ion-input
+            type="number"
+            formControlName="precio">
+          </ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="floating">Stock</ion-label>
-          <ion-input type="number" formControlName="stock"></ion-input>
+          <ion-input
+            type="number"
+            formControlName="stock">
+          </ion-input>
         </ion-item>
 
-        <!-- 🔽 SELECT CATEGORÍA -->
+        <!-- Categoría -->
         <ion-item>
           <ion-label>Categoría</ion-label>
+
           <ion-select
             formControlName="categoriaId"
             placeholder="Seleccione categoría">
-            
+
             <ion-select-option
               *ngFor="let cat of categorias"
               [value]="cat.categoriaId">
+
               {{ cat.nombre }}
+
             </ion-select-option>
 
           </ion-select>
+
         </ion-item>
 
-        <ion-item>
-          <ion-label position="floating">Link Imagen</ion-label>
-          <ion-input formControlName="imagenUrl"></ion-input>
-        </ion-item>
+        <!-- Seleccionar imágenes -->
+        <div class="upload-container">
 
-        <!-- PREVIEW -->
-        <img
-          *ngIf="productoForm.value.imagenUrl"
-          [src]="productoForm.value.imagenUrl"
-          class="preview-img"
-        />
+          <label class="upload-label">
+            Seleccionar imágenes
+          </label>
+
+          <input
+          #fileInput
+            type="file"
+            accept="image/*"
+            multiple
+            (change)="onFilesSelected($event)">
+
+          <p *ngIf="selectedFiles.length > 0">
+            {{ selectedFiles.length }} imagen(es) seleccionada(s)
+          </p>
+
+        </div>
+
+        <!-- Vista previa -->
+        <div class="preview-container" *ngIf="previewUrls.length">
+
+  <img
+    *ngFor="let url of previewUrls"
+    [src]="url"
+    class="preview-img">
+
+</div>
 
         <ion-item lines="none">
           <ion-label>Activo</ion-label>
           <ion-toggle formControlName="activo"></ion-toggle>
         </ion-item>
 
-        <ion-button expand="block" type="submit" class="save-btn">
-          Registrar Producto
+        <ion-button
+          expand="block"
+          type="submit"
+          class="save-btn"
+          [disabled]="subiendo">
+
+          {{ subiendo ? 'Subiendo...' : 'Registrar Producto' }}
+
         </ion-button>
 
       </form>

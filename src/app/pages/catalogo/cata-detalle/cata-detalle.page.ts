@@ -40,109 +40,117 @@ export class CataDetallePage implements OnInit {
 
   producto: any;
   productosRelacionados: any[] = [];
+
   imagenPrincipal: string = '';
   imagenActiva: string = '';
 
   constructor(
-  private router: Router,
-  private auth: Auth,
-  private firestore: Firestore
+    private router: Router,
+    private auth: Auth,
+    private firestore: Firestore
   ) {
-  const nav = this.router.getCurrentNavigation();
+    const nav = this.router.getCurrentNavigation();
 
-  if (nav?.extras?.state) {
-    this.producto = nav.extras.state['producto'];
-    } 
+    if (nav?.extras?.state) {
+      this.producto = nav.extras.state['producto'];
+    }
   }
 
   ngOnInit() {
     if (this.producto) {
-
-    this.imagenPrincipal =
-      this.producto.imagenes?.[0] ?? '';
-
-    this.cargarRelacionados();
-
-  }
+      this.imagenPrincipal = this.producto.imagenes?.[0] ?? '';
+      this.imagenActiva = this.imagenPrincipal;
+      this.cargarRelacionados();
+    }
   }
 
-  // botones sin funcionalidad por ahora
+  // 🔥 AGREGAR AL CARRITO
   agregar() {
 
-  const uid = this.auth.currentUser?.uid;
+    const uid = this.auth.currentUser?.uid;
 
-  if (!uid) {
-    alert('Debe iniciar sesión');
-    return;
+    if (!uid) {
+      alert('Debe iniciar sesión');
+      return;
+    }
+
+    let carrito = JSON.parse(
+      localStorage.getItem(`carrito_${uid}`) || '[]'
+    );
+
+    const productId = this.producto.docId || this.producto.id;
+
+    const index = carrito.findIndex(
+      (item: any) => item.id === productId
+    );
+
+    if (index !== -1) {
+      carrito[index].cantidad =
+        (carrito[index].cantidad || 1) + 1;
+    } else {
+      carrito.push({
+        id: productId,
+        nombre: this.producto.nombre,
+        precio: this.producto.precio,
+        stock: this.producto.stock,
+        categoriaId: this.producto.categoriaId,
+        imagenes: Array.isArray(this.producto.imagenes)
+          ? this.producto.imagenes
+          : [],
+        cantidad: 1
+      });
+    }
+
+    localStorage.setItem(
+      `carrito_${uid}`,
+      JSON.stringify(carrito)
+    );
+
+    this.router.navigate(['/car-compra']);
   }
 
-  let carrito = JSON.parse(
-    localStorage.getItem(`carrito_${uid}`) || '[]'
-  );
-
-  // Verificar si el producto ya existe
-  const index = carrito.findIndex(
-    (item: any) =>
-      (item.docId || item.id) ===
-      (this.producto.docId || this.producto.id)
-  );
-
-  if (index !== -1) {
-    carrito[index].cantidad =
-      (carrito[index].cantidad || 1) + 1;
-  } else {
-    carrito.push({
-      ...this.producto,
-      cantidad: 1
-    });
-  }
-
-  localStorage.setItem(
-    `carrito_${uid}`,
-    JSON.stringify(carrito)
-  );
-
-  this.router.navigate(['/car-compra']);
-}
-  eliminar() {}
+  // 🔥 RELACIONADOS
   cargarRelacionados() {
 
-  const ref = collection(this.firestore, 'producto');
+    const ref = collection(this.firestore, 'producto');
 
-  const q = query(
-    ref,
-    where('activo', '==', true),
-    where('categoriaId', '==', this.producto.categoriaId)
-  );
+    const q = query(
+      ref,
+      where('activo', '==', true),
+      where('categoriaId', '==', this.producto.categoriaId)
+    );
 
-  collectionData(q, { idField: 'docId' }).subscribe((data: any[]) => {
+    collectionData(q, { idField: 'docId' }).subscribe((data: any[]) => {
 
-    this.productosRelacionados = data
-      .filter(p => p.docId !== this.producto.docId)
-      .slice(0, 4);
+      this.productosRelacionados = data
+        .filter(p => p.docId !== this.producto.docId)
+        .slice(0, 4);
 
-  });
+    });
 
-}
+  }
 
-verRelacionado(producto: any) {
+  // 🔥 VER PRODUCTO RELACIONADO
+  verRelacionado(producto: any) {
 
-  this.producto = producto;
+    this.producto = producto;
 
-  this.imagenPrincipal =
-    this.producto.imagenes?.[0] ?? '';
+    this.imagenPrincipal = producto.imagenes?.[0] ?? '';
+    this.imagenActiva = this.imagenPrincipal;
 
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
 
-  this.cargarRelacionados();
+    this.cargarRelacionados();
+  }
 
-}
+  // 🔥 CAMBIAR IMAGEN
+  cambiarImagen(img: string) {
+    this.imagenPrincipal = img;
+    this.imagenActiva = img;
+  }
 
-cambiarImagen(img: string) {
-  this.imagenPrincipal = img;
-  this.imagenActiva = img;
-}
+  eliminar(){}
 }

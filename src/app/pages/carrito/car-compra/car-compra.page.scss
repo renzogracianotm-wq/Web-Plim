@@ -33,37 +33,51 @@ ion-card {
   background: var(--surface);
   border-radius: 16px;
   overflow: hidden;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-  transition: 0.2s;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+ion-card:active {
+  transform: scale(0.99);
 }
 
 ion-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-/* IMAGEN */
+/* =========================
+   IMAGEN
+========================= */
+
 .producto-img {
   width: 100%;
-  height: 180px;
+  height: 190px;
   object-fit: cover;
+  display: block;
+  background: #f2f2f2;
 }
 
-/* TITULOS */
+/* =========================
+   TEXTO
+========================= */
+
 ion-card-title {
   color: var(--text);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
 }
 
 ion-card-subtitle {
   color: var(--text-secondary);
+  font-size: 0.95rem;
 }
 
-/* TEXTO */
 ion-card-content p {
   color: var(--text-secondary);
   margin: 4px 0;
+  font-size: 0.9rem;
 }
 
 /* =========================
@@ -74,19 +88,23 @@ ion-card-content p {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin: 12px 0;
+  gap: 14px;
+  margin: 14px 0;
+  padding: 6px 0;
+  border-radius: 10px;
 }
 
 .cantidad {
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 700;
   color: var(--text);
 }
 
-/* BOTONES +/- */
+/* botones +/- */
 .cantidad-group ion-button {
   --border-radius: 10px;
+  width: 38px;
+  height: 38px;
 }
 
 /* =========================
@@ -95,13 +113,13 @@ ion-card-content p {
 
 .total {
   text-align: center;
-  margin: 20px 0;
+  margin: 24px 0 10px;
 }
 
 .total h2 {
   color: var(--text);
-  font-size: 1.4rem;
-  font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 /* =========================
@@ -115,23 +133,33 @@ ion-button[expand="block"] {
 }
 
 /* =========================
+   EMPTY STATE (MEJORA)
+========================= */
+
+.empty-cart {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+/* =========================
    TABLET
 ========================= */
 
 @media (min-width: 768px) {
 
   ion-card {
-    max-width: 700px;
+    max-width: 720px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .producto-img {
-    height: 220px;
+    height: 240px;
   }
 
   .total h2 {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 }
 
@@ -151,39 +179,31 @@ ion-button[expand="block"] {
   }
 
   .producto-img {
-    height: 260px;
+    height: 280px;
   }
 
   .total h2 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 }
 
 /* =========================
-   🌸 TEMA ROSA
+   TEMAS
 ========================= */
 
 .theme-pink ion-card {
   border: 1px solid rgba(255, 79, 163, 0.15);
 }
 
-/* =========================
-   🔵 TEMA AZUL
-========================= */
-
 .theme-blue ion-card {
   border: 1px solid rgba(79, 125, 255, 0.15);
 }
 
-/* =========================
-   🌙 TEMA OSCURO
-========================= */
-
 .theme-dark ion-card {
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
 }
 
 .theme-dark .producto-img {
-  border: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }

@@ -18,7 +18,7 @@
   <!-- Imagen principal -->
   <img
     class="imagen-principal"
-    [src]="imagenPrincipal">
+    [src]="imagenPrincipal || 'assets/img/default.png'">
 
   <!-- Miniaturas -->
   <div
@@ -27,7 +27,7 @@
 
     <img
       *ngFor="let img of producto.imagenes"
-      [src]="img"
+      [src]="img || 'assets/img/default.png'"
       class="miniatura"
       [class.activa]="img === imagenActiva"
       (click)="cambiarImagen(img)">
@@ -73,7 +73,7 @@
 
       <img
   *ngIf="p.imagenes?.length"
-  [src]="p.imagenes[0]" />
+  [src]="p.imagenes[0] || 'assets/img/default.png'" />
       <ion-card-header>
         <ion-card-title>{{ p.nombre }}</ion-card-title>
         <ion-card-subtitle>S/{{ p.precio }}</ion-card-subtitle>

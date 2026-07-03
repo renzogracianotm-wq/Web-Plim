@@ -5,6 +5,7 @@ import { IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonCon
   IonCardHeader,  IonCardTitle,  IonCardSubtitle,  IonCardContent,  IonButton } from '@ionic/angular/standalone';
 import { Firestore, collection,collectionData, query, where,getDoc,updateDoc,doc ,addDoc, serverTimestamp } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
+import { onAuthStateChanged } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-car-compra',
@@ -16,116 +17,146 @@ import { Auth } from '@angular/fire/auth';
     IonCardContent,    IonButton, CommonModule, FormsModule]})
 export class CarCompraPage implements OnInit {
 
-  carrito: any[] = [];
+   carrito: any[] = [];
   total: number = 0;
 
   constructor(
-  private firestore: Firestore,
-  private auth: Auth
-) {}
+    private firestore: Firestore,
+    private auth: Auth
+  ) {}
 
   ngOnInit() {
-    this.cargarCarrito();
+    onAuthStateChanged(this.auth, (user) => {
+    if (user) {
+      this.cargarCarrito(user.uid);
+    } else {
+      this.carrito = [];
+      this.total = 0;
+    }
+  });
   }
 
-  cargarCarrito() {
-
-  const uid = this.auth.currentUser?.uid;
-
-  if (!uid) {
-    this.carrito = [];
-    this.total = 0;
-    return;
-  }
+  // 🔥 CARGAR CARRITO
+  cargarCarrito(uid: string) {
 
   this.carrito = JSON.parse(
     localStorage.getItem(`carrito_${uid}`) || '[]'
   );
 
-  this.carrito.forEach(p => {
-    if (!p.cantidad) p.cantidad = 1;
-  });
+  this.carrito = this.carrito.map(p => ({
+    ...p,
+    cantidad: p.cantidad || 1
+  }));
 
   this.actualizarTotal();
 }
 
+  // 🔥 AUMENTAR
   aumentarCantidad(producto: any) {
+
     if (producto.cantidad < producto.stock) {
       producto.cantidad++;
       this.guardarCarrito();
     }
   }
 
+  // 🔥 DISMINUIR
   disminuirCantidad(producto: any) {
+
     if (producto.cantidad > 1) {
       producto.cantidad--;
       this.guardarCarrito();
     }
   }
 
+  // 🔥 GUARDAR LOCALSTORAGE
   guardarCarrito() {
 
-  const uid = this.auth.currentUser?.uid;
+    const uid = this.auth.currentUser?.uid;
+    if (!uid) return;
 
-  if (!uid) return;
+    localStorage.setItem(
+      `carrito_${uid}`,
+      JSON.stringify(this.carrito)
+    );
 
-  localStorage.setItem(
-    `carrito_${uid}`,
-    JSON.stringify(this.carrito)
-  );
-
-  this.actualizarTotal();
-}
-
-  actualizarTotal() {
-    this.total = this.carrito.reduce((sum, p) => sum + p.precio * p.cantidad, 0);
+    this.actualizarTotal();
   }
 
+  // 🔥 TOTAL
+  actualizarTotal() {
+
+    this.total = this.carrito.reduce(
+      (sum, p) =>
+        sum + (p.precio || 0) * (p.cantidad || 1),
+      0
+    );
+  }
+
+  // 🔥 COMPRAR
   async comprar() {
-    const carritoRef = collection(this.firestore, 'carrito');
+
+    const uid = this.auth.currentUser?.uid;
+    if (!uid) return;
+
+    const comprasRef = collection(this.firestore, 'compras');
 
     for (let producto of this.carrito) {
 
-      // 1️⃣ Registrar compra en carrito
-      await addDoc(carritoRef, {
-        uid: this.auth.currentUser?.uid,
-        productoId: producto.docId || producto.id,
+      const productId = producto.id;
+
+      // guardar compra
+      await addDoc(comprasRef, {
+        uid,
+        productoId: productId,
         nombre: producto.nombre,
         precio: producto.precio,
         cantidad: producto.cantidad,
         stock: producto.stock,
         categoriaId: producto.categoriaId,
-        imagenUrl: producto.imagenUrl,
-        fecha: serverTimestamp()
+        imagenes: Array.isArray(producto.imagenes)
+          ? producto.imagenes
+          : [],
+        fecha: serverTimestamp(),
+        estado: 'pendiente'
       });
 
-      // 2️⃣ Actualizar stock en colección productos
-      const prodRef = doc(this.firestore, `producto/${producto.docId || producto.id}`);
+      // actualizar stock producto
+      const prodRef = doc(
+        this.firestore,
+        `producto/${productId}`
+      );
+
       const prodSnap = await getDoc(prodRef);
 
       if (prodSnap.exists()) {
+
         const data = prodSnap.data() as any;
-        let nuevoStock = data.stock - producto.cantidad;
+
+        const nuevoStock = Math.max(
+          0,
+          data.stock - producto.cantidad
+        );
 
         await updateDoc(prodRef, {
           stock: nuevoStock,
-          activo: nuevoStock > 0 ? true : false
+          activo: nuevoStock > 0
         });
       }
     }
 
-    // Limpiar carrito local
-    const uid = this.auth.currentUser?.uid;
+    // limpiar carrito
+    localStorage.removeItem(`carrito_${uid}`);
 
-if (uid) {
-  localStorage.removeItem(`carrito_${uid}`);
-}
     this.carrito = [];
     this.total = 0;
+
     alert('Compra registrada y stock actualizado!');
   }
 
+  // 🔥 ELIMINAR ITEM
   eliminar(index: number) {
+
     this.carrito.splice(index, 1);
     this.guardarCarrito();
   }

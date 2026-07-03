@@ -12,8 +12,9 @@ import {  IonHeader,
   IonCardTitle,
   IonCardContent,
   IonIcon } from '@ionic/angular/standalone';
-import { Firestore, collection, collectionData, query, where } from '@angular/fire/firestore';
+import { Firestore, collection, collectionData, query, where,orderBy } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
+import { onAuthStateChanged } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-mi-compra',
@@ -42,26 +43,30 @@ export class MiCompraPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cargarCompras();
+    onAuthStateChanged(this.auth, (user) => {
+    if (user) {
+      this.cargarCompras(user.uid);
+    } else {
+      this.compras = [];
+    }
+  });
   }
 
-  cargarCompras() {
+  cargarCompras(uid: string) {
 
-    const uid = this.auth.currentUser?.uid;
+  const ref = collection(this.firestore, 'compras');
 
-    if (!uid) return;
+  const q = query(
+    ref,
+    where('uid', '==', uid),
+    orderBy('fecha', 'desc')
+  );
 
-    const comprasRef = collection(this.firestore, 'carrito');
-
-    const q = query(
-      comprasRef,
-      where('uid', '==', uid)
-    );
-
-    collectionData(q, { idField: 'id' })
-      .subscribe(data => {
-        this.compras = data;
-      });
+  collectionData(q, { idField: 'id' })
+    .subscribe(data => {
+      console.log('COMPRAS:', data); // 🔥 DEBUG
+      this.compras = data;
+    });
   }
 
 }

@@ -13,20 +13,23 @@
     <h2>Historial de Compras</h2>
   </div>
 
-  <!-- SI NO HAY COMPRAS -->
+  <!-- VACÍO -->
   <div *ngIf="compras.length === 0" class="vacio">
     <ion-icon name="cart-outline"></ion-icon>
     <p>No tienes compras registradas.</p>
   </div>
 
-  <!-- LISTA -->
+  <!-- LISTA DE COMPRAS -->
   <ion-card *ngFor="let compra of compras" class="compra-card">
 
     <div class="compra-container">
 
       <!-- IMAGEN -->
       <div class="compra-img">
-        <img [src]="compra.imagenUrl" />
+        <img
+          [src]="compra.imagenes?.[0] || 'assets/img/default.png'"
+          alt="producto"
+        />
       </div>
 
       <!-- INFO -->

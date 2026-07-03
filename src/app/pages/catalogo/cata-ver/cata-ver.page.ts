@@ -6,6 +6,8 @@ import { Firestore, collection,collectionData, query, where,getDocs,updateDoc,do
 import {  IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonContent,  IonItem,
   IonLabel,  IonInput,  IonSelect,  IonSelectOption, IonButton,IonIcon,IonSearchbar } from '@ionic/angular/standalone';
 import { Router,RouterModule } from '@angular/router';
+import { onAuthStateChanged } from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
 @Component({
   selector: 'app-cata-ver',
   templateUrl: './cata-ver.page.html',
@@ -26,13 +28,24 @@ export class CataVerPage implements OnInit {
   busqueda: string = '';
   categoriaSeleccionada: string = '';
 
-  constructor(private firestore: Firestore, private router: Router) {
+  usuario: any = null;
+
+  constructor(private firestore: Firestore, private router: Router, private auth: Auth) {
     
   }
 
   ngOnInit() {
     this.cargarCategorias();
     this.cargarProductos();
+    onAuthStateChanged(this.auth, (user) => {
+    if (user) {
+      this.usuario = {
+        nombre: user.displayName || user.email
+      };
+    } else {
+      this.usuario = null;
+    }
+  });
   }  
 
   verDetalle(producto: any) {

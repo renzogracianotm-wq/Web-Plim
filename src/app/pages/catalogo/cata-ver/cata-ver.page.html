@@ -31,11 +31,16 @@
 
         <div class="separator"></div>
 
-        <div
-          class="user-info"
-          routerLink="/login">
-          <small>Hola,</small>
-          <strong>Inicia sesión</strong>
+        <div class="user-info"  routerLink="/login">
+
+          <small>
+            {{ usuario?.nombre ? 'Hola,' : 'Hola,' }}
+          </small>
+
+          <strong>
+            {{ usuario?.nombre || 'Inicia sesión' }}
+          </strong>
+
         </div>
 
         <ion-buttons>

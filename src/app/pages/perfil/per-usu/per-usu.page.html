@@ -1,0 +1,63 @@
+<ion-header class="perfil-header">
+  <ion-toolbar>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+
+  <div class="perfil-banner">
+    <div class="avatar">
+      <img src="assets/img/default.png" />
+    </div>
+
+    <div class="info">
+      <h2>{{ usuario.nombre || 'Usuario' }}</h2>
+      <p>{{ usuario.correo }}</p>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="form-card">
+
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+      <ion-input [(ngModel)]="usuario.correo" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-input [(ngModel)]="usuario.telefono"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Dirección</ion-label>
+      <ion-input [(ngModel)]="usuario.direccion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ciudad</ion-label>
+      <ion-input [(ngModel)]="usuario.ciudad"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Código Postal</ion-label>
+      <ion-input [(ngModel)]="usuario.codigoPostal"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha de nacimiento</ion-label>
+      <ion-input type="date" [(ngModel)]="usuario.fechaNacimiento"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="save-btn" (click)="actualizarPerfil()">
+      Guardar cambios
+    </ion-button>
+
+  </ion-card>
+
+</ion-content>

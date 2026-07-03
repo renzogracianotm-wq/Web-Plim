@@ -70,4 +70,8 @@ export const routes: Routes = [
     path: 'per-temas',
     loadComponent: () => import('./pages/perfil/per-temas/per-temas.page').then( m => m.PerTemasPage)
   },
+  {
+    path: 'per-usu',
+    loadComponent: () => import('./pages/perfil/per-usu/per-usu.page').then( m => m.PerUsuPage)
+  },
 ];

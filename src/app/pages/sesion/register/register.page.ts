@@ -3,11 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth';
-import {
-  FormBuilder,  FormGroup,  ReactiveFormsModule,  Validators} from '@angular/forms';
-import {  IonContent,  IonCard,  IonItem,  IonLabel,  
-  IonInput,  IonButton} from '@ionic/angular/standalone';
-
+import {  FormBuilder,  FormGroup,  ReactiveFormsModule,  Validators} from '@angular/forms';
+import {  IonContent,  IonCard,  IonItem,  IonLabel,    IonInput,  IonButton} from '@ionic/angular/standalone';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -21,11 +19,12 @@ import {  IonContent,  IonCard,  IonItem,  IonLabel,
 export class RegisterPage implements OnInit {
 
   registerForm!: FormGroup;
-  loading: boolean = false;
+  loading = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private firestore: Firestore,
     private router: Router
   ) {}
 
@@ -35,37 +34,53 @@ export class RegisterPage implements OnInit {
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmarPassword: ['', Validators.required]
-    }, { validator: this.passwordsIguales });
+    }, { validators: this.passwordsIguales });
   }
 
-  // Validar que las contraseñas coincidan
   passwordsIguales(group: FormGroup) {
     const pass = group.get('password')?.value;
     const confirm = group.get('confirmarPassword')?.value;
-    return pass === confirm ? null : { noSonIguales: true };
+    return pass === confirm ? null : { noCoinciden: true };
   }
 
   registrarUsuario() {
+
     if (this.registerForm.invalid) {
       alert('Complete todos los campos correctamente.');
       return;
     }
 
-    const { correo, password } = this.registerForm.value;
+    const { nombre, correo, password } = this.registerForm.value;
+
     this.loading = true;
 
     this.authService.registrarUsuario(correo, password)
-      .then(() => {
+      .then(async (userCredential: any) => {
+
+        const uid = userCredential.user.uid;
+
+        // 🔥 guardar perfil en Firestore
+        await setDoc(doc(this.firestore, 'users', uid), {
+          nombre,
+          correo,
+          rol: 'cliente',
+          fecha: new Date()
+        });
+
         alert('Usuario registrado correctamente!');
         this.router.navigate(['/login']);
+
       })
       .catch(error => {
         console.log(error);
         alert('Error al registrar: ' + error.message);
       })
-      .finally(() => this.loading = false);
+      .finally(() => {
+        this.loading = false;
+      });
   }
+
   irALogin() {
-  this.router.navigate(['/login']);
+    this.router.navigate(['/login']);
   }
 }

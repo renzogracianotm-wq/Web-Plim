@@ -17,24 +17,24 @@
 
     <ion-card-content>
 
-      <form [formGroup]="categoriaForm" (ngSubmit)="registrar()">
-
-        <!-- ID -->
-        <ion-item>
-          <ion-label position="floating">ID Categoría</ion-label>
-          <ion-input formControlName="categoriaId"></ion-input>
-        </ion-item>
+      <form (ngSubmit)="registrar()">
 
         <!-- Nombre -->
         <ion-item>
           <ion-label position="floating">Nombre</ion-label>
-          <ion-input formControlName="nombre"></ion-input>
+          <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>
         </ion-item>
 
         <!-- Descripción -->
         <ion-item>
           <ion-label position="floating">Descripción</ion-label>
-          <ion-input formControlName="descripcion"></ion-input>
+          <ion-input [(ngModel)]="descripcion" name="descripcion"></ion-input>
+        </ion-item>
+
+        <!-- Activo -->
+        <ion-item>
+          <ion-label>Activo</ion-label>
+          <ion-toggle [(ngModel)]="activo" name="activo"></ion-toggle>
         </ion-item>
 
         <!-- Selección de imagen -->
@@ -53,29 +53,25 @@
           class="upload-btn"
           (click)="subirImagen()"
           [disabled]="!selectedFile || subiendo">
+
           {{ subiendo ? 'Subiendo imagen...' : 'Subir Imagen' }}
 
         </ion-button>
 
         <!-- URL generada -->
-        <ion-item *ngIf="categoriaForm.value.imagenUrl">
+        <ion-item *ngIf="imagenUrl">
           <ion-label position="stacked">
             URL Generada
           </ion-label>
 
-          <ion-input
-            [value]="categoriaForm.value.imagenUrl"
-            readonly>
-          </ion-input>
+          <ion-input [value]="imagenUrl" readonly></ion-input>
         </ion-item>
 
         <!-- Vista previa -->
-        <div
-          *ngIf="categoriaForm.value.imagenUrl"
-          class="preview-container">
+        <div *ngIf="imagenUrl" class="preview-container">
 
           <img
-            [src]="categoriaForm.value.imagenUrl"
+            [src]="imagenUrl"
             alt="Vista previa"
             class="preview-img">
 
@@ -86,7 +82,7 @@
           expand="block"
           type="submit"
           class="save-btn"
-          [disabled]="categoriaForm.invalid || subiendo">
+          [disabled]="!nombre || !imagenUrl || subiendo">
 
           Registrar Categoría
 

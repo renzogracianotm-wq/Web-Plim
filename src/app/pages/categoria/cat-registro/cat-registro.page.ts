@@ -22,46 +22,32 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class CatRegistroPage implements OnInit {
 
-  categoriaForm!: FormGroup;
+   // 🔥 ahora todo es simple variables
+  nombre = '';
+  descripcion = '';
+  imagenUrl = '';
+  activo = true;
 
-  selectedFile!: File;
+  selectedFile: File | null = null;
   subiendo = false;
 
-  // 🔹 Reemplaza por tu Cloud Name
   private readonly CLOUD_NAME = 'dahefh6aq';
-
-  // 🔹 Reemplaza por el nombre de tu Upload Preset
   private readonly UPLOAD_PRESET = 'minimoda_upload';
 
-  constructor(
-    private fb: FormBuilder,
-    private firestore: Firestore
-  ) {}
+  constructor(private firestore: Firestore) {}
 
   ngOnInit() {
-
-    this.categoriaForm = this.fb.group({
-      categoriaId: ['', Validators.required],
-      nombre: ['', Validators.required],
-      descripcion: [''],
-      imagenUrl: ['', Validators.required],
-      activo: [true]
-    });
-
+    // vacío o lógica futura
   }
 
-     onFileSelected(event: any) {
-
+  onFileSelected(event: any) {
     const file = event.target.files[0];
-
     if (file) {
       this.selectedFile = file;
     }
-
   }
 
   async subirImagen() {
-
     if (!this.selectedFile) {
       alert('Seleccione una imagen');
       return;
@@ -70,15 +56,9 @@ export class CatRegistroPage implements OnInit {
     this.subiendo = true;
 
     try {
-
       const formData = new FormData();
-
       formData.append('file', this.selectedFile);
-
-      formData.append(
-        'upload_preset',
-        this.UPLOAD_PRESET
-      );
+      formData.append('upload_preset', this.UPLOAD_PRESET);
 
       const response = await fetch(
         `https://api.cloudinary.com/v1_1/${this.CLOUD_NAME}/image/upload`,
@@ -91,62 +71,52 @@ export class CatRegistroPage implements OnInit {
       const data = await response.json();
 
       if (data.secure_url) {
-
-        this.categoriaForm.patchValue({
-          imagenUrl: data.secure_url
-        });
-
+        this.imagenUrl = data.secure_url;
         alert('Imagen subida correctamente');
-
       } else {
-
         console.error(data);
         alert('Error al subir imagen');
-
       }
 
     } catch (error) {
-
       console.error(error);
       alert('Error al conectar con Cloudinary');
-
     } finally {
-
       this.subiendo = false;
-
     }
-
   }
 
   async registrar() {
 
-    if (this.categoriaForm.invalid) {
-      alert('Complete todos los campos');
+    if (!this.nombre || !this.imagenUrl) {
+      alert('Complete los campos obligatorios');
       return;
     }
 
-    try {
+    const categoriaId =
+      'CAT-' + Math.random().toString(36).substring(2, 10).toUpperCase();
 
-      await addDoc(
-        collection(this.firestore, 'categoria'),
-        this.categoriaForm.value
-      );
+    try {
+      await addDoc(collection(this.firestore, 'categoria'), {
+        nombre: this.nombre,
+        descripcion: this.descripcion,
+        imagenUrl: this.imagenUrl,
+        activo: this.activo,
+        categoriaId
+      });
 
       alert('Categoría registrada correctamente');
 
-      this.categoriaForm.reset({
-        activo: true
-      });
-
-      this.selectedFile = undefined as any;
+      // limpiar
+      this.nombre = '';
+      this.descripcion = '';
+      this.imagenUrl = '';
+      this.activo = true;
+      this.selectedFile = null;
 
     } catch (error) {
-
       console.error(error);
       alert('Error al registrar categoría');
-
     }
-
   }
-
 }

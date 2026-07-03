@@ -80,21 +80,21 @@ export class CataVerPage implements OnInit {
 
     this.categoriasVisibles =      this.categorias.slice(
         this.indiceCategoria,
-        this.indiceCategoria + 6
+        this.indiceCategoria + 5
       );
 
   }
 
   siguienteCategoria() {
-  if (this.indiceCategoria + 6 < this.categorias.length) {
-    this.indiceCategoria += 6;
+  if (this.indiceCategoria + 5 < this.categorias.length) {
+    this.indiceCategoria += 5;
     this.actualizarCategorias();
   }
 }
 
   anteriorCategoria() {
   if (this.indiceCategoria > 0) {
-    this.indiceCategoria -= 6;
+    this.indiceCategoria -= 5;
     if (this.indiceCategoria < 0) {
       this.indiceCategoria = 0;
     }

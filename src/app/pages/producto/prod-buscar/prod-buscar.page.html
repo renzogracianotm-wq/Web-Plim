@@ -22,8 +22,8 @@
 
       <!-- IMAGEN -->
       <img
-        *ngIf="p.imagenUrl"
-        [src]="p.imagenUrl"
+        *ngIf="p.imagenes || p.imagenUrl"
+        [src]="p.imagenes?.[0] || p.imagenUrl"
         class="preview-img"
       />
 

@@ -21,24 +21,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './prod-actualizar.page.html',
   styleUrls: ['./prod-actualizar.page.scss'],
   standalone: true,
-  imports: [CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+  imports: [CommonModule,    FormsModule,    ReactiveFormsModule,
+    IonHeader,    IonToolbar,    IonButtons,    IonMenuButton,    IonTitle,    IonContent,
+    IonItem,    IonLabel,    IonInput,    IonCard,    IonCardContent,    IonButton,    IonToggle]
+  })
 
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonMenuButton,
-    IonTitle,
-    IonContent,
-    IonItem,
-    IonLabel,
-    IonInput,
-    IonCard,
-    IonCardContent,
-    IonButton,
-    IonToggle]
-})
 export class ProdActualizarPage implements OnInit {
 
   productoForm!: FormGroup;
@@ -52,21 +39,23 @@ export class ProdActualizarPage implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.productoId = this.route.snapshot.paramMap.get('productoId')!;
 
-    this.productoForm = this.fb.group({
-      productoId: [{ value: '', disabled: true }],
-      nombre: ['', Validators.required],
-      descripcion: [''],
-      precio: [0, [Validators.required, Validators.min(0)]],
-      stock: [0, [Validators.required, Validators.min(0)]],
-      categoriaId: ['', Validators.required],
-      imagenUrl: ['', Validators.required],
-      activo: [true]
-    });
+  this.productoId = this.route.snapshot.paramMap.get('productoId')!;
 
-    await this.cargarProducto();
-  }
+  this.productoForm = this.fb.group({
+    productoId: [{ value: '', disabled: true }],
+    nombre: ['', Validators.required],
+    descripcion: [''],
+    precio: [0],
+    stock: [0],
+    categoriaId: [''],
+    imagenUrl: [''],
+    imagenes: this.fb.control([]),
+    activo: [true]
+  });
+
+  await this.cargarProducto();
+}
 
   async cargarProducto() {
     const ref = collection(this.firestore, 'producto');
@@ -76,8 +65,19 @@ export class ProdActualizarPage implements OnInit {
 
     if (!snapshot.empty) {
       const docSnap = snapshot.docs[0];
-      this.docId = docSnap.id; // id real de Firestore
-      this.productoForm.patchValue(docSnap.data());
+      this.docId = docSnap.id;
+
+      const data: any = docSnap.data();
+
+      // Si existe el array, mostrar la primera imagen en el campo antiguo
+      if (data.imagenes?.length) {
+        data.imagenUrl = data.imagenes[0];
+      }
+
+      this.productoForm.patchValue({
+        ...data,
+        imagenes: data.imagenes || []
+      });
     }
   }
 

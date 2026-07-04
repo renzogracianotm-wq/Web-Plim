@@ -50,8 +50,8 @@
         </ion-item>
 
         <img
-          *ngIf="productoForm.value.imagenUrl"
-          [src]="productoForm.value.imagenUrl"
+          *ngIf="productoForm.value.imagenes?.length || productoForm.value.imagenUrl"
+          [src]="productoForm.value.imagenes?.[0] || productoForm.value.imagenUrl"
           class="preview-img"
         />
 

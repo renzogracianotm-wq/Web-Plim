@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  FormGroup,
-  FormBuilder,
-  Validators
-} from '@angular/forms';
+import {  FormsModule,  ReactiveFormsModule,  FormGroup,  FormBuilder,  Validators} from '@angular/forms';
+
 import {  IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonContent,  IonItem,
   IonLabel,  IonInput,  IonSelect,  IonSelectOption,IonIcon,
     IonCard,  IonCardContent,  IonButton,IonToggle } from '@ionic/angular/standalone';
@@ -30,6 +25,11 @@ export class CatActualizarPage implements OnInit {
   categoriaId!: string;
   docId!: string; // 🔑 id REAL del documento
 
+  private readonly CLOUD_NAME = 'dahefh6aq';
+  private readonly UPLOAD_PRESET = 'minimoda_upload';
+
+  selectedFile: File | null = null;
+  subiendo = false;
   constructor(
     private route: ActivatedRoute,
     private firestore: Firestore,
@@ -64,13 +64,73 @@ export class CatActualizarPage implements OnInit {
     }
   }
 
+  seleccionarImagen(event: any) {
+  const file = event.target.files[0];
+
+  if (file) {
+    this.selectedFile = file;
+  }
+}
+
+async subirImagen() {
+  if (!this.selectedFile) {
+    alert('Seleccione una imagen');
+    return;
+  }
+
+  this.subiendo = true;
+
+  try {
+    const formData = new FormData();
+    formData.append('file', this.selectedFile);
+    formData.append('upload_preset', this.UPLOAD_PRESET);
+
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${this.CLOUD_NAME}/image/upload`,
+      {
+        method: 'POST',
+        body: formData
+      }
+    );
+
+    const data = await response.json();
+
+    if (data.secure_url) {
+
+      this.categoriaForm.patchValue({
+        imagenUrl: data.secure_url
+      });
+
+      alert('Imagen subida correctamente');
+
+    } else {
+      console.error(data);
+      alert('Error al subir imagen');
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert('Error al conectar con Cloudinary');
+  } finally {
+    this.subiendo = false;
+  }
+}
+
   async actualizar() {
     if (!this.docId) return;
 
-    const ref = doc(this.firestore, `categoria/${this.docId}`);
+    try {
+      const ref = doc(this.firestore, `categoria/${this.docId}`);
 
-    await updateDoc(ref, {
-      ...this.categoriaForm.getRawValue()
-    });
+      await updateDoc(ref, {
+        ...this.categoriaForm.getRawValue()
+      });
+
+      alert('Categoría actualizada correctamente');
+
+    } catch (error) {
+      console.error(error);
+      alert('Error al actualizar la categoría');
+    }
   }
 }

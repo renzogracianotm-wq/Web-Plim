@@ -34,6 +34,19 @@
           <ion-input formControlName="imagenUrl"></ion-input>
         </ion-item>
 
+        <input
+          type="file"
+          accept="image/*"
+          (change)="seleccionarImagen($event)"
+        />
+
+        <ion-button
+          expand="block"
+          (click)="subirImagen()"
+          [disabled]="subiendo">
+          {{ subiendo ? 'Subiendo...' : 'Subir nueva imagen' }}
+        </ion-button>
+
         <!-- PREVIEW -->
         <img
           *ngIf="categoriaForm.value.imagenUrl"

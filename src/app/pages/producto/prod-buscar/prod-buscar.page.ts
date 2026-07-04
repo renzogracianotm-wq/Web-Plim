@@ -1,20 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  IonHeader,
-  IonToolbar,
-  IonButtons,
-  IonMenuButton,
-  IonTitle,
-  IonContent,
-  IonItem,
-  IonLabel,
-  IonInput,
-  IonCard,
-  IonCardContent,
-  IonButton
-} from '@ionic/angular/standalone';
+import {  IonHeader,  IonToolbar,  IonButtons,  IonMenuButton,  IonTitle,  IonContent,
+  IonItem,  IonLabel,  IonInput,  IonCard,  IonCardContent,  IonButton} from '@ionic/angular/standalone';
 
 import { Router } from '@angular/router';
 import { Firestore, collection,collectionData, query, where,getDocs,updateDoc,doc,deleteDoc } from '@angular/fire/firestore';

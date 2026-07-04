@@ -21,12 +21,17 @@ ion-menu-button {
 }
 
 /* =========================
-   CONTENIDO
+   CONTENIDO (CONTAINER)
 ========================= */
 
 .cat-page {
   --background: var(--background);
   color: var(--text);
+
+  /* 🔥 CLAVE: contenedor centrado */
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 18px;
 }
 
 /* =========================
@@ -61,21 +66,21 @@ ion-menu-button {
    TARJETAS
 ========================= */
 
-ion-card {
-  --background: var(--surface);
-}
-
 .cat-card {
   margin: 0;
   border-radius: 18px;
   overflow: hidden;
   background: var(--surface);
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-  transition: 0.25s;
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  /* ocupa todo el grid */
+  width: 100%;
 }
 
 .cat-card:hover {
   transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 /* =========================
@@ -139,6 +144,10 @@ ion-card {
 
 @media (min-width: 768px) {
 
+  .cat-page {
+    padding: 24px;
+  }
+
   .cat-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -155,8 +164,7 @@ ion-card {
 @media (min-width: 1200px) {
 
   .cat-page {
-    max-width: 1400px;
-    margin: auto;
+    padding: 32px;
   }
 
   .cat-grid {
@@ -172,48 +180,39 @@ ion-card {
    TEMA ROSA
 ========================= */
 
-.theme-pink {
+.theme-pink .search-item {
+  border: 1px solid rgba(255, 79, 163, 0.15);
+}
 
-  .search-item {
-    border: 1px solid rgba(255, 79, 163, 0.15);
-  }
-
-  .cat-card {
-    border: 1px solid rgba(255, 79, 163, 0.12);
-  }
+.theme-pink .cat-card {
+  border: 1px solid rgba(255, 79, 163, 0.12);
 }
 
 /* =========================
    TEMA AZUL
 ========================= */
 
-.theme-blue {
+.theme-blue .search-item {
+  border: 1px solid rgba(79, 125, 255, 0.15);
+}
 
-  .search-item {
-    border: 1px solid rgba(79, 125, 255, 0.15);
-  }
-
-  .cat-card {
-    border: 1px solid rgba(79, 125, 255, 0.12);
-  }
+.theme-blue .cat-card {
+  border: 1px solid rgba(79, 125, 255, 0.12);
 }
 
 /* =========================
    TEMA OSCURO
 ========================= */
 
-.theme-dark {
+.theme-dark .search-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-  .search-item {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
+.theme-dark .cat-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
 
-  .cat-card {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-  }
-
-  .preview-img {
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
+.theme-dark .preview-img {
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }

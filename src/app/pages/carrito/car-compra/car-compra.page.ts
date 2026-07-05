@@ -13,7 +13,7 @@ import { onAuthStateChanged } from '@angular/fire/auth';
   styleUrls: ['./car-compra.page.scss'],
   standalone: true,
   imports: [IonHeader,    IonToolbar,    IonButtons,    IonMenuButton,    IonTitle,
-    IonContent,    IonCard,    IonCardHeader,    IonCardTitle,    IonCardSubtitle,
+    IonContent,    IonCard,    IonCardHeader,    IonCardTitle,    IonCardSubtitle, 
     IonCardContent,    IonButton, CommonModule, FormsModule]})
 export class CarCompraPage implements OnInit {
 
@@ -27,10 +27,7 @@ export class CarCompraPage implements OnInit {
   ) {}
 
   ngOnInit() {
-
-  onAuthStateChanged(this.auth, () => {
-    this.cargarCarrito();
-    });
+  this.cargarCarrito();
   }
 
   private getCarritoKey(): string {
@@ -164,4 +161,8 @@ export class CarCompraPage implements OnInit {
     this.carrito.splice(index, 1);
     this.guardarCarrito();
   }
+
+  ionViewWillEnter() {
+  this.cargarCarrito();
+}
 }

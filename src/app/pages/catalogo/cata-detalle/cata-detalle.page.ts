@@ -14,27 +14,10 @@ import {  Firestore,  collection,  collectionData,  query,  where} from '@angula
   styleUrls: ['./cata-detalle.page.scss'],
   standalone: true,
    imports: [
-    CommonModule,
-    FormsModule,
-    MenuComponent,
-
-    IonHeader,
-    IonToolbar,
-    IonButtons,
-    IonBackButton,
-    IonTitle,
-    IonContent,
-
-    IonCard,
-    IonCardHeader,
-    IonCardTitle,
-    IonCardSubtitle,
-    IonCardContent,
-    IonButton,
-    IonItem,
-    IonLabel,
-    IonThumbnail
-  ]
+    CommonModule,    FormsModule,    MenuComponent,
+    IonHeader,    IonToolbar,    IonButtons,    IonBackButton,    IonTitle,    IonContent,
+    IonCard,    IonCardHeader,    IonCardTitle,    IonCardSubtitle,    IonCardContent,    IonButton,
+    IonItem,    IonLabel,    IonThumbnail  ]
 })
 export class CataDetallePage implements OnInit {
 
